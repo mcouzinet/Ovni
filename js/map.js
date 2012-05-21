@@ -57,14 +57,15 @@ function initCB(instance) {
 	      dragInfo = null;
 	    }
 	  });
+	
 	// AJOUT D'UNE PHOTO //
 	// Create the ScreenOverlay
-	var screenOverlay = ge.createScreenOverlay('');
+	//var screenOverlay = ge.createScreenOverlay('');
 
 	// Specify a path to the image and set as the icon
-	var icon = ge.createIcon('');
-	icon.setHref('http://www.google.com/intl/en_ALL/images/logo.gif');
-	screenOverlay.setIcon(icon);
+	// var icon = ge.createIcon('');
+	// 	icon.setHref('http://www.google.com/intl/en_ALL/images/logo.gif');
+	// 	screenOverlay.setIcon(icon);
 
 	// Set the ScreenOverlay's position in the window
 	screenOverlay.getOverlayXY().setXUnits(ge.UNITS_PIXELS);

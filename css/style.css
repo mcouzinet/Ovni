@@ -1,1 +1,31 @@
-#map3d{height:60%;width:100%;border:none;padding:0;margin:0;position:absolute;bottom:0;}
+/* reset */
+html, body, div, span, applet, object, iframe,h1, h2, h3, h4, h5, h6, p, blockquote, pre,a, abbr, acronym, address, big, cite, code,del, dfn, em, font, img, ins, kbd, q, s, samp,small, strike, strong, sub, sup, tt, var,b, u, i, center,dl, dt, dd, ol, ul, li,fieldset, form, label, legend,table, caption {margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent;}
+*{margin:0;padding:0;}
+body{line-height:1;}
+ol, ul{list-style:none;}
+blockquote, q{quotes:none;}
+blockquote:before, blockquote:after,q:before, q:after {content:'';content:none;}
+:focus {outline:0;}
+a{text-decoration: none; color:inherit}
+ins{text-decoration: none;}
+del{text-decoration: line-through;}
+table{border-collapse: collapse;border-spacing: 0;}
+#content{
+	width:960px;
+	height:600px;
+	margin:0 auto;
+}
+#map3d{
+	height:100%;
+	width:480px;
+	border:none;
+	padding:0;
+	margin:0;
+	float:right;
+	bottom:0;
+}
+#Flash_part{
+	height:100%;
+	width:480px;
+	float:left;
+}

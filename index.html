@@ -1,4 +1,4 @@
-<html lang="en">
+<html lang="fr">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>O.V.N.I</title>
@@ -8,25 +8,25 @@
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 	<link rel="stylesheet" href="css/style.css" type="text/css">
 </head>
-<body onload="pageInit();" style="padding:0;margin:0;">
-	<object id="ExternalInterfaceExample" width="50%" height="40%" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab">
-         <param name="movie" value="flash/test.swf" />
-         <param name="quality" value="high" />
-         <param name="bgcolor" value="#ffffff" />
-         <param name="allowScriptAccess" value="sameDomain" />
-         <embed src="flash/test.swf" quality="high" bgcolor="#eeeeee"
-             width="500" height="375" name="ExternalInterfaceExample" align="middle"
-             play="true" loop="false" quality="high" allowScriptAccess="sameDomain"
-             type="application/x-shockwave-flash"
-             pluginspage="http://www.macromedia.com/go/getflashplayer">
-         </embed>
-     </object>
- 
-     <form name="form1" onsubmit="return false;" style="float:right">
-         <textarea cols="60" rows="5" name="output" readonly="true">Hello world !</textarea>
-     </form>
-
-	<div id="map3d"></div>
+<body onload="pageInit();">
+	<section id="content">
+		<object id="Flash_part" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab">
+	         <param name="movie" value="flash/test.swf" />
+	         <param name="quality" value="high" />
+	         <param name="bgcolor" value="#ffffff" />
+	         <param name="allowScriptAccess" value="sameDomain" />
+	         <embed src="flash/test.swf" quality="high" bgcolor="#eeeeee"
+	             width="480" height="375" name="ExternalInterfaceExample" align="middle"
+	             play="true" loop="false" quality="high" allowScriptAccess="sameDomain"
+	             type="application/x-shockwave-flash"
+	             pluginspage="http://www.macromedia.com/go/getflashplayer">
+	         </embed>
+	     </object>
+	     <!-- <form name="form" onsubmit="return false;" style="float:right">
+	     	         <textarea cols="60" rows="5" name="output" readonly="true">Hello world !</textarea>
+	     	     </form> -->
+		<div id="map3d"></div>
+	</section>
 </body>
 </html>
  
