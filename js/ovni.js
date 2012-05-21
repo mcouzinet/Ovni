@@ -31,11 +31,12 @@ var left = 37;
 var up = 38;
 var right = 39;
 var down = 40;
+var space = 32;
 
 function returnKey(e)
 {
-	console.log(e.keyCode);
-	if (e.keyCode==32){
+	//console.log(e.keyCode);
+	if (e.keyCode==space){
 		sendToActionScript('espace');
 	}
 	if (e.keyCode==up){
