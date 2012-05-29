@@ -49,6 +49,7 @@ function initCB(instance) {
 	document.onkeydown = function(e) {
 		console.log('keydown='+e.keyCode);
 		if (e.keyCode==up||e.keyCode==right||e.keyCode==down||e.keyCode==left){
+			//distance mouton/emplacement
 			var lookAt = ge.getView().copyAsLookAt(ge.ALTITUDE_RELATIVE_TO_GROUND);
 	   		var latcenter = lookAt.getLatitude();
 	    	var lngcenter = lookAt.getLongitude();
@@ -60,15 +61,50 @@ function initCB(instance) {
 		if (e.keyCode==space){
 			sendToActionScript('espace');
 		}
-		// if (e.keyCode==up){
-		// 			sendToActionScript('haut');
-		// 		}
-		// 		if (e.keyCode==right){
-		// 			sendToActionScript('droite');
-		// 		}
-		// 		if (e.keyCode==down){
-		// 			sendToActionScript('bas');
-		// 		}
+		if (e.keyCode==65){ //Bouton A -- Zoom +
+			console.log("A");
+			// Get the current view.
+			var lookAt = ge.getView().copyAsLookAt(ge.ALTITUDE_RELATIVE_TO_GROUND);
+
+			// Zoom out to twice the current range.
+			lookAt.setRange(lookAt.getRange() / 8.0);
+
+			// Update the view in Google Earth.
+			ge.getView().setAbstractView(lookAt);
+		}
+		if (e.keyCode==90){ //Bouton Z -- Zoom -
+			console.log("Z");
+			// Get the current view.
+			var lookAt = ge.getView().copyAsLookAt(ge.ALTITUDE_RELATIVE_TO_GROUND);
+
+			// Zoom out to twice the current range.
+			lookAt.setRange(lookAt.getRange() * 8.0);
+
+			// Update the view in Google Earth.
+			ge.getView().setAbstractView(lookAt);
+		}
+		if (e.keyCode==up){
+			// Get the current view.
+			var camera = ge.getView().copyAsCamera(ge.ALTITUDE_RELATIVE_TO_GROUND);
+
+			// Add 25 degrees to the current latitude and longitude values.
+			camera.setLatitude(camera.getLatitude() + 0.1);
+			//lookAt.setRange(lookAt.getRange() * 10.0);
+
+			// Update the view in Google Earth.
+			ge.getView().setAbstractView(camera);
+		}
+		if (e.keyCode==down){
+			// Get the current view.
+			var camera = ge.getView().copyAsCamera(ge.ALTITUDE_RELATIVE_TO_GROUND);
+
+			// Add 25 degrees to the current latitude and longitude values.
+			camera.setLatitude(camera.getLatitude() - 0.1);
+			//lookAt.setRange(lookAt.getRange() * 10.0);
+
+			// Update the view in Google Earth.
+			ge.getView().setAbstractView(camera);
+		}
 	};
 
   // Listen for mousedown on the window (look specifically for point placemarks).
