@@ -1,12 +1,53 @@
+
 google.load("earth", "1");
 
+var jsReady = false;
 var ge;
 var placemark;
 var dragInfo = null;
 
-function initMap(){
+function isReady(){
+	return jsReady;
+}
+
+function pageInit(){
+	jsReady = true;
 	google.earth.createInstance('map3d', initCB, failureCB);
 }
+
+function thisMovie(movieName){
+	if(navigator.appName.indexOf("Microsoft") != -1){
+		return window[movieName];
+	}else{
+		return document[movieName];
+	}
+}
+
+function sendToActionScript(value){
+	thisMovie("ExternalInterfaceExample").sendToActionScript(value);
+}
+
+function sendToJavaScript(value) {
+     console.log('sendToJavaScript : ' + value);
+}
+
+document.onkeyup = function(e){
+	sendToActionScript(e.keyCode + 'up');
+}
+
+document.onkeydown = function(e){
+	if(e.keyCode==up||e.keyCode==right||e.keyCode==down||e.keyCode==left){
+		var lookAt = ge.getView().copyAsLookAt(ge.ALTITUDE_RELATIVE_TO_GROUND);
+   		var latcenter = lookAt.getLatitude();
+    	var lngcenter = lookAt.getLongitude();
+    	var latmouton = point.getLatitude();
+    	var lngmouton = point.getLongitude();
+    	var distance = Math.sqrt(Math.pow(latcenter-latmouton,2)+Math.pow(lngcenter-lngmouton,2));
+		console.log("distance="+distance);
+	}
+	sendToActionScript(e.keyCode);
+};
+
 
 function initCB(instance) {
    	ge = instance;
@@ -45,31 +86,14 @@ function initCB(instance) {
 	// Add the placemark to Earth.
 	ge.getFeatures().appendChild(placemark);
 
+	var left = 37;
+	var up = 38;
+	var right = 39;
+	var down = 40;
+	var space = 32;
+
 	//Calcul de distance avec les moutons
-	document.onkeydown = function(e) {
-		console.log('keydown='+e.keyCode);
-		if (e.keyCode==up||e.keyCode==right||e.keyCode==down||e.keyCode==left){
-			var lookAt = ge.getView().copyAsLookAt(ge.ALTITUDE_RELATIVE_TO_GROUND);
-	   		var latcenter = lookAt.getLatitude();
-	    	var lngcenter = lookAt.getLongitude();
-	    	var latmouton = point.getLatitude();
-	    	var lngmouton = point.getLongitude();
-	    	var distance = Math.sqrt(Math.pow(latcenter-latmouton,2)+Math.pow(lngcenter-lngmouton,2));
-			console.log("distance="+distance);
-		}
-		if (e.keyCode==space){
-			sendToActionScript('espace');
-		}
-		// if (e.keyCode==up){
-		// 			sendToActionScript('haut');
-		// 		}
-		// 		if (e.keyCode==right){
-		// 			sendToActionScript('droite');
-		// 		}
-		// 		if (e.keyCode==down){
-		// 			sendToActionScript('bas');
-		// 		}
-	};
+	
 
   // Listen for mousedown on the window (look specifically for point placemarks).
   	// google.earth.addEventListener(ge.getWindow(), 'mousedown', function(event) {
@@ -143,7 +167,6 @@ function failureCB(instance) {
    ge.getWindow().setVisibility(true);
 }
 
-
-
 function failureCallback(errorCode) {
+	console.log('ERROR')
 }
