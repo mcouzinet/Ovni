@@ -89,12 +89,13 @@ function initCB(instance) {
 	// Add the placemark to Earth.
 	ge.getFeatures().appendChild(placemark);
 
+}
 
 function failureCB(instance) {
    ge = instance;
    ge.getWindow().setVisibility(true);
 }
 
-function failureCallback(errorCode) {
-	console.log('ERROR')
+function failureCallback(errorCode){
+	console.log('ERROR');
 }
