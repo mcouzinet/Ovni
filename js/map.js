@@ -5,6 +5,7 @@ var jsReady = false;
 var ge;
 var placemark;
 var dragInfo = null;
+var position;
 
 function isReady(){
 	return jsReady;
@@ -23,29 +24,31 @@ function thisMovie(movieName){
 	}
 }
 
+// Fonction d'envoie à flash
 function sendToActionScript(value){
 	thisMovie("ExternalInterfaceExample").sendToActionScript(value);
 }
 
+// Reception des valeurs par javascript
 function sendToJavaScript(value) {
      console.log('sendToJavaScript : ' + value);
 }
 
 document.onkeyup = function(e){
+	// Envoie du numero de la touche à flash
 	sendToActionScript(e.keyCode + 'up');
 }
 
 document.onkeydown = function(e){
-	if(e.keyCode==up||e.keyCode==right||e.keyCode==down||e.keyCode==left){
-		var lookAt = ge.getView().copyAsLookAt(ge.ALTITUDE_RELATIVE_TO_GROUND);
-   		var latcenter = lookAt.getLatitude();
-    	var lngcenter = lookAt.getLongitude();
-    	var latmouton = point.getLatitude();
-    	var lngmouton = point.getLongitude();
-    	var distance = Math.sqrt(Math.pow(latcenter-latmouton,2)+Math.pow(lngcenter-lngmouton,2));
-		console.log("distance="+distance);
-	}
+	// Envoie du numero de la touche à flash
 	sendToActionScript(e.keyCode);
+	// Calcul de la distance
+	position.lookAt = ge.getView().copyAsLookAt(ge.ALTITUDE_RELATIVE_TO_GROUND);
+   	position.latcenter = position.lookAt.getLatitude();
+    position.lngcenter = position.lookAt.getLongitude();
+    position.latmouton = point.getLatitude();
+    position.lngmouton = point.getLongitude();
+    position.distance = Math.sqrt(Math.pow(position.latcenter-position.latmouton,2)+Math.pow(position.lngcenter-position.lngmouton,2));
 };
 
 
@@ -86,81 +89,6 @@ function initCB(instance) {
 	// Add the placemark to Earth.
 	ge.getFeatures().appendChild(placemark);
 
-	var left = 37;
-	var up = 38;
-	var right = 39;
-	var down = 40;
-	var space = 32;
-
-	//Calcul de distance avec les moutons
-
-
-  // Listen for mousedown on the window (look specifically for point placemarks).
-  	// google.earth.addEventListener(ge.getWindow(), 'mousedown', function(event) {
-  	//     	if (event.getTarget().getType() == 'KmlPlacemark' &&
-  	//         event.getTarget().getGeometry().getType() == 'KmlPoint') {
-  	//       var placemark = event.getTarget();
-  	//       dragInfo = {
-  	//         placemark: event.getTarget(),
-  	//         dragged: false
-  	//       };
-  	//     }
-  	//  });
-  	//   	 google.earth.addEventListener(ge.getGlobe(), 'mousemove', function(event) {
-  	//     if (dragInfo) {
-  	//       event.preventDefault();
-  	//       var point = dragInfo.placemark.getGeometry();
-  	//       point.setLatitude(event.getLatitude());
-  	//       point.setLongitude(event.getLongitude());
-  	//       dragInfo.dragged = true;
-  	//     }
-  	//   });
-  	// 
-  	//   // Listen for mouseup on the window.
-  	//   google.earth.addEventListener(ge.getWindow(), 'mouseup', function(event) {
-  	//     if (dragInfo) {
-  	//       if (dragInfo.dragged) {
-  	//         // If the placemark was dragged, prevent balloons from popping up.
-  	//         event.preventDefault();
-  	//       }
-  	// 
-  	//       dragInfo = null;
-  	//     }
-  	//   });
-	
-	// AJOUT D'UNE PHOTO //
-	// Create the ScreenOverlay
-	//var screenOverlay = ge.createScreenOverlay('');
-
-	// Specify a path to the image and set as the icon
-	// var icon = ge.createIcon('');
-	// 	icon.setHref('http://www.google.com/intl/en_ALL/images/logo.gif');
-	// 	screenOverlay.setIcon(icon);
-
-	// Set the ScreenOverlay's position in the window
-	// screenOverlay.getOverlayXY().setXUnits(ge.UNITS_PIXELS);
-	// 	screenOverlay.getOverlayXY().setYUnits(ge.UNITS_PIXELS);
-	// 	screenOverlay.getOverlayXY().setX(200);
-	// 	screenOverlay.getOverlayXY().setY(200);
-
-	// Set the overlay's size in pixels
-	// screenOverlay.getSize().setXUnits(ge.UNITS_PIXELS);
-	// 	screenOverlay.getSize().setYUnits(ge.UNITS_PIXELS);
-	// 	screenOverlay.getSize().setX(250);
-	// 	screenOverlay.getSize().setY(75);
-
-	// Specify the point in the image around which to rotate
-	// screenOverlay.getRotationXY().setXUnits(ge.UNITS_FRACTION);
-	// 	screenOverlay.getRotationXY().setYUnits(ge.UNITS_FRACTION);
-	// 	screenOverlay.getRotationXY().setX(0.5);
-	// 	screenOverlay.getRotationXY().setY(0.5);
-
-	// Rotate the overlay
-	// screenOverlay.setRotation(25);
-
-	// Add the ScreenOverlay to Earth
-	// ge.getFeatures().appendChild(screenOverlay);
-}
 
 function failureCB(instance) {
    ge = instance;
