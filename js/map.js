@@ -26,7 +26,7 @@ function thisMovie(movieName){
 
 // Fonction d'envoie à flash
 function sendToActionScript(value){
-	thisMovie("ExternalInterfaceExample").sendToActionScript(value);
+	thisMovie("Interface").sendToActionScript(value);
 }
 
 // Reception des valeurs par javascript
