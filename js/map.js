@@ -37,6 +37,7 @@ function sendToJavaScript(value) {
 
 var bougeX =0;
 var bougeY =0;
+var zoom;
 document.onkeyup = function(e){
 	// Envoie du numero de la touche à flash
 	switch (e.keyCode) {
@@ -52,9 +53,15 @@ document.onkeyup = function(e){
 		 case 39: //Bouton Right
 			bougeY = 0;
 		 break;
-		case 32: //Bouton Espace
+		 case 32: //Bouton Espace
 			sendToActionScript('espaceUp');
-		break;
+		 break;
+		 case 90: //Bouton Z - Zoom -
+			zoom=0;
+		 break;
+		 case 90: //Bouton Z - Zoom -
+			zoom=0;
+		 break;
 	}
 }
 
@@ -74,12 +81,19 @@ document.onkeydown = function(e){
 	//Déplacement sur la carte
 	switch (e.keyCode) {
 	 	case 65: //Bouton A - Zoom +
-			lookAt.setRange(lookAt.getRange() / 8.0);
-			ge.getView().setAbstractView(lookAt);
+			// lookAt.setRange(lookAt.getRange() / 8.0);
+			// 			ge.getView().setAbstractView(lookAt);
+			//console.log('zoom'+LookAt.getRange());
+			zoom=100;
+			// lookAt.setRange(lookAt.getRange() * zoom);
+			// 			ge.getView().setAbstractView(lookAt);
 		 break;
 		 case 90: //Bouton Z - Zoom -
-			lookAt.setRange(lookAt.getRange() * 8.0);
-			ge.getView().setAbstractView(lookAt);
+			// lookAt.setRange(lookAt.getRange() * 8.0);
+			// 			ge.getView().setAbstractView(lookAt);
+			zoom=-100;
+			// lookAt.setRange(lookAt.getRange() * zoom);
+			// 			ge.getView().setAbstractView(lookAt);
 		 break;
 		 case 38: //Bouton Up
 			bougeX = 0.005;
@@ -88,10 +102,10 @@ document.onkeydown = function(e){
 			bougeX = -0.005;
 		 break;
 		 case 37: //Bouton Left
-			bougeY = 0.005;
+			bougeY = -0.005;
 		 break;
 		 case 39: //Bouton Right
-			bougeY = -0.005;
+			bougeY = 0.005;
 		 break;
 		case 32: //Bouton Espace
 			sendToActionScript('espace');
@@ -104,6 +118,7 @@ var enterFrame = function (){
 	setTimeout(function() {
 		camera.setLatitude(camera.getLatitude() + bougeX);
 		camera.setLongitude(camera.getLongitude() + bougeY);
+		camera.setAltitude(camera.getAltitude() + zoom);
 		ge.getView().setAbstractView(camera);
 		enterFrame();
 	},50);
