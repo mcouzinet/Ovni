@@ -34,10 +34,31 @@ function sendToJavaScript(value) {
      console.log('sendToJavaScript : ' + value);
 }
 
+
+var bougeX =0;
+var bougeY =0;
 document.onkeyup = function(e){
 	// Envoie du numero de la touche à flash
-	sendToActionScript(e.keyCode + 'up');
+	switch (e.keyCode) {
+		 case 38: //Bouton Up
+			bougeX = 0;
+		 break;
+		 case 40: //Bouton Down
+			bougeX = 0;
+		 break;
+		 case 37: //Bouton Left
+			bougeY = 0;
+		 break;
+		 case 39: //Bouton Right
+			bougeY = 0;
+		 break;
+		case 32: //Bouton Espace
+			sendToActionScript('espaceUp');
+		break;
+	}
 }
+
+
 
 document.onkeydown = function(e){
 	// Envoie du numero de la touche à flash
@@ -61,26 +82,32 @@ document.onkeydown = function(e){
 			ge.getView().setAbstractView(lookAt);
 		 break;
 		 case 38: //Bouton Up
-			camera.setLatitude(camera.getLatitude() + 0.1);
-			ge.getView().setAbstractView(camera);
+			bougeX = 0.005;
 		 break;
 		 case 40: //Bouton Down
-			camera.setLatitude(camera.getLatitude() - 0.1);
-			ge.getView().setAbstractView(camera);
+			bougeX = -0.005;
 		 break;
 		 case 37: //Bouton Left
-			camera.setLongitude(camera.getLongitude() - 0.1);
-			ge.getView().setAbstractView(camera);
+			bougeY = 0.005;
 		 break;
 		 case 39: //Bouton Right
-			camera.setLongitude(camera.getLongitude() + 0.1);
-			ge.getView().setAbstractView(camera);
+			bougeY = -0.005;
 		 break;
 		case 32: //Bouton Espace
 			sendToActionScript('espace');
 		break;
 	 }
-};
+		enterFrame();
+}
+
+var enterFrame = function (){
+	setTimeout(function() {
+		camera.setLatitude(camera.getLatitude() + bougeX);
+		camera.setLongitude(camera.getLongitude() + bougeY);
+		ge.getView().setAbstractView(camera);
+		enterFrame();
+	},50);
+}
 
 
 function initCB(instance) {
@@ -119,6 +146,7 @@ function initCB(instance) {
 
 	// Add the placemark to Earth.
 	ge.getFeatures().appendChild(placemark);
+	ge.getOptions().setFlyToSpeed(ge.SPEED_TELEPORT);
 
 }
 
