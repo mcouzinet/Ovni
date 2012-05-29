@@ -4,7 +4,7 @@ package {
 
 	public class soucoupe extends Sprite{
 
-		public function soucoupe(largeur){
+		public function soucoupe(){
 			
 		}
 	

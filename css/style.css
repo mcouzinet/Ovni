@@ -25,10 +25,10 @@ table{border-collapse: collapse;border-spacing: 0;}
 	bottom:0;
 }
 #Flash_part{
-	height:375px;
+	height:600px;
 	width:480px;
 	float:left;
-	margin-top:100px;
+	margin-top:0px;
 }
 #swf{
 	width:480px;
