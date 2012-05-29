@@ -88,10 +88,10 @@ document.onkeydown = function(e){
 			bougeX = -0.005;
 		 break;
 		 case 37: //Bouton Left
-			bougeY = 0.005;
+			bougeY = -0.005;
 		 break;
 		 case 39: //Bouton Right
-			bougeY = -0.005;
+			bougeY = 0.005;
 		 break;
 		case 32: //Bouton Espace
 			sendToActionScript('espace');
