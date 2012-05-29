@@ -9,7 +9,6 @@ package {
 		
 		public function theRocket(largeur){
 			rocket = new Sprite();
-			trace('edsqdsd');
 			this.x = largeur;
 			this.y = Math.random()*300;
 			rocket.addEventListener(Event.ENTER_FRAME, rocketFrame);
@@ -18,7 +17,7 @@ package {
 	
 		private function rocketFrame(e:Event):void {
 			if(e.target.x > -20){
-	       		this.x -= 10;
+	       		this.x -= 4;
 			}else{
 				rocket.removeEventListener(Event.ENTER_FRAME, rocketFrame);
 			}

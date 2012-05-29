@@ -37,7 +37,7 @@ function sendToJavaScript(value) {
 
 var bougeX =0;
 var bougeY =0;
-var zoom;
+var zoom = 0;
 document.onkeyup = function(e){
 	// Envoie du numero de la touche à flash
 	switch (e.keyCode) {
@@ -54,7 +54,7 @@ document.onkeyup = function(e){
 			bougeY = 0;
 		 break;
 		 case 32: //Bouton Espace
-			sendToActionScript('espaceUp');
+			sendToActionScript('espaceup');
 		 break;
 		 case 90: //Bouton Z - Zoom -
 			zoom=0;
@@ -68,8 +68,7 @@ document.onkeyup = function(e){
 
 
 document.onkeydown = function(e){
-	// Envoie du numero de la touche à flash
-	sendToActionScript(e.keyCode);
+
 	// Calcul de la distance
 	lookAt = ge.getView().copyAsLookAt(ge.ALTITUDE_RELATIVE_TO_GROUND);
 	camera = ge.getView().copyAsCamera(ge.ALTITUDE_RELATIVE_TO_GROUND);
@@ -84,14 +83,14 @@ document.onkeydown = function(e){
 			// lookAt.setRange(lookAt.getRange() / 8.0);
 			// 			ge.getView().setAbstractView(lookAt);
 			//console.log('zoom'+LookAt.getRange());
-			zoom=100;
+			zoom = 100;
 			// lookAt.setRange(lookAt.getRange() * zoom);
 			// 			ge.getView().setAbstractView(lookAt);
 		 break;
 		 case 90: //Bouton Z - Zoom -
 			// lookAt.setRange(lookAt.getRange() * 8.0);
 			// 			ge.getView().setAbstractView(lookAt);
-			zoom=-100;
+			zoom = -100;
 			// lookAt.setRange(lookAt.getRange() * zoom);
 			// 			ge.getView().setAbstractView(lookAt);
 		 break;
