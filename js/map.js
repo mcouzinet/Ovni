@@ -43,44 +43,42 @@ document.onkeydown = function(e){
 	// Envoie du numero de la touche à flash
 	sendToActionScript(e.keyCode);
 	// Calcul de la distance
-	position.lookAt = ge.getView().copyAsLookAt(ge.ALTITUDE_RELATIVE_TO_GROUND);
-   	position.latcenter = position.lookAt.getLatitude();
-    position.lngcenter = position.lookAt.getLongitude();
-    position.latmouton = point.getLatitude();
-    position.lngmouton = point.getLongitude();
-    position.distance = Math.sqrt(Math.pow(position.latcenter-position.latmouton,2)+Math.pow(position.lngcenter-position.lngmouton,2));
+	lookAt = ge.getView().copyAsLookAt(ge.ALTITUDE_RELATIVE_TO_GROUND);
+	camera = ge.getView().copyAsCamera(ge.ALTITUDE_RELATIVE_TO_GROUND);
+	var latcenter = lookAt.getLatitude();
+	var lngcenter = lookAt.getLongitude();
+	var latmouton = point.getLatitude();
+	var lngmouton = point.getLongitude();
+	var distance = Math.sqrt(Math.pow(latcenter-latmouton,2)+Math.pow(lngcenter-lngmouton,2));
 	//Déplacement sur la carte
 	switch (e.keyCode) {
 	 	case 65: //Bouton A - Zoom +
-		 	var lookAt = ge.getView().copyAsLookAt(ge.ALTITUDE_RELATIVE_TO_GROUND);
 			lookAt.setRange(lookAt.getRange() / 8.0);
 			ge.getView().setAbstractView(lookAt);
 		 break;
 		 case 90: //Bouton Z - Zoom -
-			var lookAt = ge.getView().copyAsLookAt(ge.ALTITUDE_RELATIVE_TO_GROUND);
 			lookAt.setRange(lookAt.getRange() * 8.0);
 			ge.getView().setAbstractView(lookAt);
 		 break;
 		 case 38: //Bouton Up
-		 	var camera = ge.getView().copyAsCamera(ge.ALTITUDE_RELATIVE_TO_GROUND);
 			camera.setLatitude(camera.getLatitude() + 0.1);
 			ge.getView().setAbstractView(camera);
 		 break;
 		 case 40: //Bouton Down
-		 	var camera = ge.getView().copyAsCamera(ge.ALTITUDE_RELATIVE_TO_GROUND);
 			camera.setLatitude(camera.getLatitude() - 0.1);
 			ge.getView().setAbstractView(camera);
 		 break;
 		 case 37: //Bouton Left
-		 	var camera = ge.getView().copyAsCamera(ge.ALTITUDE_RELATIVE_TO_GROUND);
 			camera.setLongitude(camera.getLongitude() - 0.1);
 			ge.getView().setAbstractView(camera);
 		 break;
 		 case 39: //Bouton Right
-		 	var camera = ge.getView().copyAsCamera(ge.ALTITUDE_RELATIVE_TO_GROUND);
 			camera.setLongitude(camera.getLongitude() + 0.1);
 			ge.getView().setAbstractView(camera);
 		 break;
+		case 32: //Bouton Espace
+			sendToActionScript('espace');
+		break;
 	 }
 };
 
@@ -114,9 +112,9 @@ function initCB(instance) {
 	placemark.setStyleSelector(style); //apply the style to the placemark
 
 	// Set the placemark's location.  
-	var point = ge.createPoint('');
-	  point.setLatitude(37);
-	  point.setLongitude(-122);
+	point = ge.createPoint('');
+ 	point.setLatitude(37);
+	point.setLongitude(-122);
 	placemark.setGeometry(point);
 
 	// Add the placemark to Earth.
