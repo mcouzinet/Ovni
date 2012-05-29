@@ -93,7 +93,7 @@ function initCB(instance) {
 	var space = 32;
 
 	//Calcul de distance avec les moutons
-	
+
 
   // Listen for mousedown on the window (look specifically for point placemarks).
   	// google.earth.addEventListener(ge.getWindow(), 'mousedown', function(event) {
