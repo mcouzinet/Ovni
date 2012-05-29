@@ -49,41 +49,39 @@ document.onkeydown = function(e){
     position.latmouton = point.getLatitude();
     position.lngmouton = point.getLongitude();
     position.distance = Math.sqrt(Math.pow(position.latcenter-position.latmouton,2)+Math.pow(position.lngcenter-position.lngmouton,2));
-<<<<<<< HEAD
-=======
 	//Déplacement sur la carte
 	switch (e.keyCode) {
-	 case 65: //Bouton A - Zoom +
-	 	var lookAt = ge.getView().copyAsLookAt(ge.ALTITUDE_RELATIVE_TO_GROUND);
-		lookAt.setRange(lookAt.getRange() / 8.0);
-		ge.getView().setAbstractView(lookAt);
-	 break;
-	 case 90: //Bouton Z - Zoom -
-		var lookAt = ge.getView().copyAsLookAt(ge.ALTITUDE_RELATIVE_TO_GROUND);
-		lookAt.setRange(lookAt.getRange() * 8.0);
-		ge.getView().setAbstractView(lookAt);
-	 break;
-	 case 38: //Bouton Up
-	 	var camera = ge.getView().copyAsCamera(ge.ALTITUDE_RELATIVE_TO_GROUND);
-		camera.setLatitude(camera.getLatitude() + 0.1);
-		ge.getView().setAbstractView(camera);
-	 break;
-	 case 40: //Bouton Down
-	 	var camera = ge.getView().copyAsCamera(ge.ALTITUDE_RELATIVE_TO_GROUND);
-		camera.setLatitude(camera.getLatitude() - 0.1);
-		ge.getView().setAbstractView(camera);
-	 break;
-	 case 37: //Bouton Left
-	 	var camera = ge.getView().copyAsCamera(ge.ALTITUDE_RELATIVE_TO_GROUND);
-		camera.setLongitude(camera.getLongitude() - 0.1);
-		ge.getView().setAbstractView(camera);
-	 break;
-	 case 39: //Bouton Right
-	 	var camera = ge.getView().copyAsCamera(ge.ALTITUDE_RELATIVE_TO_GROUND);
-		camera.setLongitude(camera.getLongitude() + 0.1);
-		ge.getView().setAbstractView(camera);
-	 break;
->>>>>>> Modif js
+	 	case 65: //Bouton A - Zoom +
+		 	var lookAt = ge.getView().copyAsLookAt(ge.ALTITUDE_RELATIVE_TO_GROUND);
+			lookAt.setRange(lookAt.getRange() / 8.0);
+			ge.getView().setAbstractView(lookAt);
+		 break;
+		 case 90: //Bouton Z - Zoom -
+			var lookAt = ge.getView().copyAsLookAt(ge.ALTITUDE_RELATIVE_TO_GROUND);
+			lookAt.setRange(lookAt.getRange() * 8.0);
+			ge.getView().setAbstractView(lookAt);
+		 break;
+		 case 38: //Bouton Up
+		 	var camera = ge.getView().copyAsCamera(ge.ALTITUDE_RELATIVE_TO_GROUND);
+			camera.setLatitude(camera.getLatitude() + 0.1);
+			ge.getView().setAbstractView(camera);
+		 break;
+		 case 40: //Bouton Down
+		 	var camera = ge.getView().copyAsCamera(ge.ALTITUDE_RELATIVE_TO_GROUND);
+			camera.setLatitude(camera.getLatitude() - 0.1);
+			ge.getView().setAbstractView(camera);
+		 break;
+		 case 37: //Bouton Left
+		 	var camera = ge.getView().copyAsCamera(ge.ALTITUDE_RELATIVE_TO_GROUND);
+			camera.setLongitude(camera.getLongitude() - 0.1);
+			ge.getView().setAbstractView(camera);
+		 break;
+		 case 39: //Bouton Right
+		 	var camera = ge.getView().copyAsCamera(ge.ALTITUDE_RELATIVE_TO_GROUND);
+			camera.setLongitude(camera.getLongitude() + 0.1);
+			ge.getView().setAbstractView(camera);
+		 break;
+	 }
 };
 
 
