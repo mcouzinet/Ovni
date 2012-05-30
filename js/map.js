@@ -148,9 +148,16 @@ var enterFrame = function (){
 
 
 function initCB(instance) {
+	
    	ge = instance;
   	ge.getWindow().setVisibility(true);
-	ge.getOptions().setMouseNavigationEnabled(false);
+	var options = ge.getOptions();   
+	options.setStatusBarVisibility(false);  
+	options.setGridVisibility(false);  
+	options.setOverviewMapVisibility(false);  
+	options.setScaleLegendVisibility(false);  
+	options.setAtmosphereVisibility(false);  
+	options.setMouseNavigationEnabled(false);
 
   	// Look at the placemark we created.
 	var la = ge.createLookAt('');
