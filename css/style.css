@@ -58,6 +58,10 @@ table{border-collapse: collapse;border-spacing: 0;}
 #top{
 	width:480px;
 	height:180px;
+	font-family: Synchro;
+	color:#42FF00;
+	font-size:24px;
+	text-align:center;
 }
 #top #temps{
 	width:60px;
@@ -67,6 +71,7 @@ table{border-collapse: collapse;border-spacing: 0;}
 	position:absolute;
 	top:55px;
 	left:30px;
+	font-size:34px;
 }
 #top #mission{
 	width:257px;
@@ -76,8 +81,6 @@ table{border-collapse: collapse;border-spacing: 0;}
 	position:absolute;
 	top:20px;
 	left:115px;
-	font-family: Synchro;
-	color:green;
 }
 #top #score{
 	width:60px;
@@ -87,6 +90,7 @@ table{border-collapse: collapse;border-spacing: 0;}
 	position:absolute;
 	top:55px;
 	left:390px;
+	font-size:34px;
 }
 #viseur{
 	width:231px;
