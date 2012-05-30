@@ -38,45 +38,83 @@ table{border-collapse: collapse;border-spacing: 0;}
 #dashboard{
 	width:480px;
 	height:600px;
-	z-index:10000;
+	z-index:100;
 	background: url('../img/dashboard/fond.png');
 	position:relative;
 	top:0px;
 	left:480px;
 }
-#compteur_poids{
-	width:107px;
-	height:120px;
-	z-index:10000;
-	background: url('../img/dashboard/poids.png');
-	position:relative;
-	top:460px;
-	left:350px;
+#top{
+	width:480px;
+	height:180px;
 }
-#jauge_poids{
-	width:92px;
-	height:18px;
-	z-index:20000;
-	background: url('../img/dashboard/aiguille_poids.png');
-	position:relative;
-	top:85px;
-	left:12px;
+#top #temps{
+	width:60px;
+	height:35px;
+	z-index:100;
+	background: url('../img/dashboard/temps_score.png');
+	position:absolute;
+	top:55px;
+	left:30px;
 }
-#compteur_hauteur{
-	width:32px;
-	height:120px;
-	z-index:10000;
+#top #mission{
+	width:257px;
+	height:26px;
+	z-index:100;
+	background: url('../img/dashboard/mission.png');
+	position:absolute;
+	top:20px;
+	left:115px;
+}
+#top #score{
+	width:60px;
+	height:35px;
+	z-index:100;
+	background: url('../img/dashboard/temps_score.png');
+	position:absolute;
+	top:55px;
+	left:390px;
+}
+#viseur{
+	width:231px;
+	height:188px;
+	z-index:200;
+	position:absolute;
+	/*background: url('../img/dashboard/viseur.png');
+		background-size:50%;*/
+	top:200px;
+	left:130px;
+}
+#bottom{
+	width:480px;
+	height:200px;
+	position:relative;
+	top:220px;
+}
+#bottom #radar{
+	width:115px;
+	height:115px;
+	z-index:100;
+	background: url('../img/dashboard/radar.png');
+	position:absolute;
+	top:70px;
+	left:360px;
+}
+#bottom #compteur_hauteur{
+	width:28px;
+	height:159px;
+	z-index:100;
 	background: url('../img/dashboard/hauteur.png');
-	position:relative;
-	top:340px;
-	left:50px;
+	position:absolute;
+	top:30px;
+	left:30px;
 }
-#jauge_hauteur{
-	width:19px;
-	height:17px;
-	z-index:10000;
+#bottom #jauge_hauteur{
+	width:40px;
+	height:40px;
+	z-index:100;
 	background: url('../img/dashboard/point_hauteur.png');
 	position:relative;
 	top:0px;
-	left:6px;
+	left:-6px;
 }
