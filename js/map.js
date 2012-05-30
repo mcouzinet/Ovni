@@ -78,7 +78,7 @@ function initCB(instance) {
 	iconMarker.setHref('http://img4.hostingpics.net/pics/926546mouton.png');
 	styleMarker = ge.createStyle(''); //create a new style
 	styleMarker.getIconStyle().setIcon(iconMarker); //apply the icon to the style
-	
+	ge.getOptions().setFlyToSpeed(ge.SPEED_TELEPORT);
 	addSheep(5);
 }
 
