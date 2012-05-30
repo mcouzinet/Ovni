@@ -10,9 +10,10 @@ package {
 		private var warn:MovieClip;
 		private var rocket:MovieClip;
 		public static const READY:String = "RocketReady";
+		
 		public function Rocket(posY:Number){
 			y = posY;
-			x = 400;
+			x = 460;
 			timer = new Timer(1300);
 			timer.addEventListener(TimerEvent.TIMER,onTimer);
 			warn = new Warning();
@@ -23,6 +24,7 @@ package {
 		}
 		
 		private function onTimer(e:TimerEvent) {
+			x += 30;
 			timer.removeEventListener(TimerEvent.TIMER,onTimer);
 			removeChild(warn);
 			addChild(rocket);
