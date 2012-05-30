@@ -1,12 +1,1 @@
-package {
-    import flash.display.Sprite;
-    import flash.events.*;
-
-	public class soucoupe extends Sprite{
-
-		public function soucoupe(){
-			
-		}
-	
-	}
-}
+﻿package  {		import flash.display.MovieClip;			public class Soucoupe extends MovieClip {				public var dir:Boolean = false;				public function Soucoupe(posY,posX) {			x = posX;			y = posY;		}	}	}
