@@ -1,4 +1,4 @@
-
+// chargement de la librairie google
 google.load("earth", "1");
 
 var jsReady = false;
@@ -6,14 +6,30 @@ var ge;
 var placemark;
 var dragInfo = null;
 var position;
+var altitudeSoucoupe = 500;
+var bougeX =0;
+var bougeY =0;
+var zoom = 0;
+
+// Reception des valeurs par javascript
+function sendToJavaScript(value) {
+     console.log('sendToJavaScript : ' + value);
+}
+
+$(function(){
+	init();
+});
+
+
+function init(){
+	jsReady = true;
+	if(google){
+		google.earth.createInstance('map3d', initCB, failureCB);
+	}
+}
 
 function isReady(){
 	return jsReady;
-}
-
-function pageInit(){
-	jsReady = true;
-	google.earth.createInstance('map3d', initCB, failureCB);
 }
 
 function thisMovie(movieName){
@@ -26,130 +42,19 @@ function thisMovie(movieName){
 
 // Fonction d'envoie à flash
 function sendToActionScript(value){
-	thisMovie("Interface").sendToActionScript(value);
-}
-
-// Reception des valeurs par javascript
-function sendToJavaScript(value) {
-     console.log('sendToJavaScript : ' + value);
-}
-
-
-var bougeX =0;
-var bougeY =0;
-var zoom = 0;
-document.onkeyup = function(e){
-	// Envoie du numero de la touche à flash
-	switch (e.keyCode) {
-		 case 38: //Bouton Up
-			bougeX = 0;
-		 break;
-		 case 40: //Bouton Down
-			bougeX = 0;
-		 break;
-		 case 37: //Bouton Left
-			bougeY = 0;
-		 break;
-		 case 39: //Bouton Right
-			bougeY = 0;
-		 break;
-		 case 32: //Bouton Espace
-			sendToActionScript('espaceup');
-		 break;
-		 case 90: //Bouton Z - Zoom -
-			zoom=0;
-		 break;
-		 case 65: //Bouton Z - Zoom -
-			zoom=0;
-		 break;
+	try{
+		thisMovie("ExternalInterfaceExample").sendToActionScript(value);
+	}catch(e){
+		console.log(e);
 	}
 }
 
 
 
-document.onkeydown = function(e){
-
-	// Calcul de la distance
-	lookAt = ge.getView().copyAsLookAt(ge.ALTITUDE_RELATIVE_TO_GROUND);
-	camera = ge.getView().copyAsCamera(ge.ALTITUDE_RELATIVE_TO_GROUND);
-	var latcenter = lookAt.getLatitude();
-	var lngcenter = lookAt.getLongitude();
-	var latmouton = point.getLatitude();
-	var lngmouton = point.getLongitude();
-	var distance = Math.sqrt(Math.pow(latcenter-latmouton,2)+Math.pow(lngcenter-lngmouton,2));
-	//Déplacement sur la carte
-		 if (camera.getAltitude()>250000)
-		{
-			switch (e.keyCode) {
-			case 65: //Bouton A - Zoom +
-				zoom = -10000;
-			 break;
-			 case 90: //Bouton Z - Zoom -
-				zoom = 10000;
-			 break;
-			 case 38: //Bouton Up
-				bougeX = 0.2;
-			 break;
-			 case 40: //Bouton Down
-				bougeX = -0.2;
-			 break;
-			 case 37: //Bouton Left
-				bougeY = -0.2;
-			 break;
-			 case 39: //Bouton Right
-				bougeY = 0.2;
-			 break;
-			case 32: //Bouton Espace
-				sendToActionScript('espace');
-				//console.log("camera.getAltitude()"+camera.getAltitude());
-			break;
-			}
-		}
-		else{
-			switch (e.keyCode) {
-			case 65: //Bouton A - Zoom +
-				zoom = -1000;
-			 break;
-			 case 90: //Bouton Z - Zoom -
-				zoom = 1000;
-				//lookAt.setRange(lookAt.getRange() / 5000);
-				// 			ge.getView().setAbstractView(lookAt);
-			 break;
-			 case 38: //Bouton Up
-				console.log("camera.getAltitude()"+camera.getAltitude());
-				bougeX = 0.000012;
-			 break;
-			 case 40: //Bouton Down
-				bougeX = -0.000012;
-			 break;
-			 case 37: //Bouton Left
-				bougeY = -0.000012;
-			 break;
-			 case 39: //Bouton Right
-				bougeY = 0.000012;
-			 break;
-			case 32: //Bouton Espace
-				sendToActionScript('espace');
-			break;
-			}	
-	 }
-		enterFrame();
-}
-
-var enterFrame = function (){
-	setTimeout(function() {
-		camera.setLatitude(camera.getLatitude() + bougeX);
-		camera.setLongitude(camera.getLongitude() + bougeY);
-		camera.setAltitude(camera.getAltitude() + zoom);
-		ge.getView().setAbstractView(camera);
-		enterFrame();
-	},50);
-}
 
 
-function initCB(instance) {
-	
-   	ge = instance;
+function initCB(ge) {
+
   	ge.getWindow().setVisibility(true);
 	var options = ge.getOptions();   
 	options.setStatusBarVisibility(false);  
@@ -164,7 +69,7 @@ function initCB(instance) {
 	la.set(45.883088, 2.5, 0, ge.ALTITUDE_RELATIVE_TO_GROUND, 0, 0, 200);
 	ge.getView().setAbstractView(la);
 
-		
+
 	// Create the placemark. MOUTON
 	var placemark = ge.createPlacemark('');
 
@@ -184,7 +89,6 @@ function initCB(instance) {
 	// Add the placemark to Earth.
 	ge.getFeatures().appendChild(placemark);
 	ge.getOptions().setFlyToSpeed(ge.SPEED_TELEPORT);
-
 }
 
 function failureCB(instance) {
@@ -194,4 +98,87 @@ function failureCB(instance) {
 
 function failureCallback(errorCode){
 	console.log('ERROR');
+}
+
+
+/*
+	END OF INIT
+*/
+
+
+document.onkeypress = function(e) {
+   	switch (e.keyCode) {
+		 case 97: /*A*/
+			altitudeSoucoupe -= (altitudeSoucoupe > 100)?100:0;
+			sendToActionScript('{"action":"zoom","value":"'+altitudeSoucoupe+'"}');
+		 break;
+		 case 122: /*Z*/
+ 			altitudeSoucoupe += (altitudeSoucoupe < 1000)?100:0;
+			sendToActionScript('{"action":"zoom","value":"'+altitudeSoucoupe+'"}');
+		 break;
+	}
+	console.log('altitudeSoucoupe : ' + altitudeSoucoupe);
+	
+	camera.setAltitude(altitudeSoucoupe);
+	ge.getView().setAbstractView(camera);
+}
+
+document.onkeyup = function(e){
+	// Envoie du numero de la touche à flash
+	switch (e.keyCode) {
+		 case 38: //Bouton Up
+			bougeX = 0;
+			sendToActionScript('{"action":"stopbouge","value":"droite"}');
+		 break;
+		 case 40: //Bouton Down
+			bougeX = 0;
+			sendToActionScript('{"action":"stopbouge","value":"gauche"}');
+		 break;
+		 case 37: //Bouton Left
+			bougeY = 0;
+			sendToActionScript('{"action":"stopbouge","value":"gauche"}');
+		 break;
+		 case 39: //Bouton Right
+			bougeY = 0;
+			sendToActionScript('{"action":"stopbouge","value":"droite"}');
+		 break;
+	}
+}
+
+document.onkeydown = function(e){
+
+	distX = camera.getLatitude()-point.getLatitude();
+	distY = camera.getLongitude()-point.getLongitude();
+	distance = Math.sqrt(Math.pow(distX,2)+Math.pow(distY,2));
+	
+	//Déplacement sur la carte
+
+	switch (e.keyCode) {
+		 case 38: //Bouton Up
+			bougeX = 0.000012;
+			sendToActionScript('{"action":"bouge","value":"droite"}');
+		 break;
+		 case 40: //Bouton Down
+			bougeX = -0.000012;
+			sendToActionScript('{"action":"bouge","value":"gauche"}');
+		 break;
+		 case 37: //Bouton Left
+			bougeY = -0.000012;
+			sendToActionScript('{"action":"bouge","value":"gauche"}');
+		 break;
+		 case 39: //Bouton Right
+			bougeY = 0.000012;
+			sendToActionScript('{"action":"bouge","value":"droite"}');
+		 break;
+	}
+	enterFrame();
+}
+
+var enterFrame = function (){
+	setTimeout(function() {
+		camera.setLatitude(camera.getLatitude() + bougeX);
+		camera.setLongitude(camera.getLongitude() + bougeY);
+		ge.getView().setAbstractView(camera);
+		enterFrame();
+	},50);
 }
