@@ -156,16 +156,16 @@ document.onkeydown = function(e){
 
 	switch (e.keyCode) {
 		 case 38: //Bouton Up
-			bougeX = 0.000012;
+			bougeX = 0.00000002*altitudeSoucoupe;
 		 break;
 		 case 40: //Bouton Down
-			bougeX = -0.000012;
+			bougeX = -0.00000002*altitudeSoucoupe;
 		 break;
 		 case 37: //Bouton Left
-			bougeY = -0.000012;
+			bougeY = -0.00000002*altitudeSoucoupe;
 		 break;
 		 case 39: //Bouton Right
-			bougeY = 0.000012;
+			bougeY = 0.00000002*altitudeSoucoupe;
 		 break;
 	}
 	enterFrame();
@@ -177,5 +177,5 @@ var enterFrame = function (){
 		camera.setLongitude(camera.getLongitude() + bougeY);
 		ge.getView().setAbstractView(camera);
 		enterFrame();
-	},50);
+	},20);
 }
