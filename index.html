@@ -1,35 +1,25 @@
 <html lang="fr">
 <head>
-	
-	<title>winteriscoming</title>
-	
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-
+	<title>winteriscoming</title>
 	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-	<script type="text/javascript" src="js/jquery.min.js"  charset="utf-8"></script>
-	<script type="text/javascript" src="js/map.js"  charset="utf-8"></script>
-	
-	<link rel="stylesheet" href="css/style.css" type="text/css">	
-	
+	<script src="js/map.js" type="text/javascript" charset="utf-8"></script>
+	<link rel="stylesheet" href="css/style.css" type="text/css">
 </head>
-<body>
+<body onload="pageInit();">
 	<section id="content">
-	
-		<object id="ExternalInterfaceExample" width="50%" height="auto"
-             codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab">
-         <param name="movie" value="flash/winteriscoming.swf" />
-         <param name="quality" value="high" />
-         <param name="bgcolor" value="#1871B4" />
-         <param name="allowScriptAccess" value="sameDomain" />
-         <embed src="flash/winteriscoming.swf" quality="high" bgcolor="#1871B4"
-             width="500" height="375" name="ExternalInterfaceExample" align="middle"
-             play="true" loop="false" quality="high" allowScriptAccess="sameDomain"
-             type="application/x-shockwave-flash"
-             pluginspage="http://www.macromedia.com/go/getflashplayer">
-         </embed>
-     </object>
-	
+		<object id="Flash_part" width="50%" height="auto" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab">
+	         <param name="movie" value="flash/winteriscoming.swf" />
+	         <param name="quality" value="high" />
+	         <param name="bgcolor" value="#1871B4" />
+	         <param name="allowScriptAccess" value="sameDomain" />
+	         <embed id="swf" src="flash/winteriscoming.swf" quality="high" name="Interface"
+	             play="true" loop="false" quality="high" allowScriptAccess="sameDomain"
+	             type="application/x-shockwave-flash"
+	             pluginspage="http://www.macromedia.com/go/getflashplayer">
+	         </embed>
+	    </object>
 		<div id="map3d"></div>
 		<div id="dashboard">
 			<div id="viseur">
