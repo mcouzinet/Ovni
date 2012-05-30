@@ -150,10 +150,11 @@ var enterFrame = function (){
 function initCB(instance) {
    	ge = instance;
   	ge.getWindow().setVisibility(true);
+	ge.getOptions().setMouseNavigationEnabled(false);
 
   	// Look at the placemark we created.
 	var la = ge.createLookAt('');
-	la.set(48.856578, 2.351828, 0, ge.ALTITUDE_RELATIVE_TO_GROUND, 0, 0, 5000);
+	la.set(45.883088, 2.5, 0, ge.ALTITUDE_RELATIVE_TO_GROUND, 0, 0, 5000);
 	ge.getView().setAbstractView(la);
 
 		
@@ -169,8 +170,8 @@ function initCB(instance) {
 
 	// Set the placemark's location.  
 	point = ge.createPoint('');
- 	point.setLatitude(48.856578);
-	point.setLongitude(2.351828);
+ 	point.setLatitude(45.883088);
+	point.setLongitude(2.5);
 	placemark.setGeometry(point);
 
 	// Add the placemark to Earth.
