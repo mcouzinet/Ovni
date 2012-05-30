@@ -117,16 +117,16 @@ document.onkeydown = function(e){
 			 break;
 			 case 38: //Bouton Up
 				console.log("camera.getAltitude()"+camera.getAltitude());
-				bougeX = 0.005;
+				bougeX = 0.000012;
 			 break;
 			 case 40: //Bouton Down
-				bougeX = -0.005;
+				bougeX = -0.000012;
 			 break;
 			 case 37: //Bouton Left
-				bougeY = -0.005;
+				bougeY = -0.000012;
 			 break;
 			 case 39: //Bouton Right
-				bougeY = 0.005;
+				bougeY = 0.000012;
 			 break;
 			case 32: //Bouton Espace
 				sendToActionScript('espace');
@@ -161,7 +161,7 @@ function initCB(instance) {
 
   	// Look at the placemark we created.
 	var la = ge.createLookAt('');
-	la.set(45.883088, 2.5, 0, ge.ALTITUDE_RELATIVE_TO_GROUND, 0, 0, 5000);
+	la.set(45.883088, 2.5, 0, ge.ALTITUDE_RELATIVE_TO_GROUND, 0, 0, 200);
 	ge.getView().setAbstractView(la);
 
 		

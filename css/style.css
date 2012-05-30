@@ -34,12 +34,21 @@ table{border-collapse: collapse;border-spacing: 0;}
 	width:480px;
 	height:375px;
 }
-#graphism{
-	width:100px;
-	height:100px;
-	background-color:rgba(255,0,0,0.5);
-	z-index:10;
+#dashboard{
+	width:480px;
+	height:600px;
+	z-index:10000;
+	background: url('../img/dashboard/fond.png');
 	position:relative;
-	top:20px;
-	left:700px;
+	top:0px;
+	left:480px;
+}
+#compteur_poids{
+	width:107px;
+	height:120px;
+	z-index:10000;
+	background: url('../img/dashboard/poids.png');
+	position:relative;
+	top:490px;
+	left:350px;
 }
