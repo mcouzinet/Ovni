@@ -5,11 +5,15 @@ var jsReady = false;
 var ge;
 var placemark;
 var dragInfo = null;
-var position;
+var position,iconMarker,styleMarker;
 var altitudeSoucoupe = 500;
 var bougeX =0;
 var bougeY =0;
 var zoom = 0;
+
+const centerMapLat = 45.4943800000006;
+const centerMapLon = 2.42566000000163;
+const mapSize = 0.008;
 
 // Reception des valeurs par javascript
 function sendToJavaScript(value) {
@@ -67,29 +71,15 @@ function initCB(instance) {
 
   	// Look at the placemark we created.
 	var la = ge.createLookAt('');
-	la.set(45.883088, 2.5, 0, ge.ALTITUDE_RELATIVE_TO_GROUND, 0, 0, 200);
+	la.set(45.4943800000006, 2.42566000000163, 0, ge.ALTITUDE_RELATIVE_TO_GROUND, 0, 0, 200);
 	ge.getView().setAbstractView(la);
-
-
-	// Create the placemark. MOUTON
-	var placemark = ge.createPlacemark('');
-
-	// Define a custom icon.
-	var icon = ge.createIcon('');
-	icon.setHref('http://img4.hostingpics.net/pics/926546mouton.png');
-	var style = ge.createStyle(''); //create a new style
-	style.getIconStyle().setIcon(icon); //apply the icon to the style
-	placemark.setStyleSelector(style); //apply the style to the placemark
-
-	// Set the placemark's location.  
-	point = ge.createPoint('');
- 	point.setLatitude(45.883088);
-	point.setLongitude(2.5);
-	placemark.setGeometry(point);
-
-	// Add the placemark to Earth.
-	ge.getFeatures().appendChild(placemark);
-	ge.getOptions().setFlyToSpeed(ge.SPEED_TELEPORT);
+	
+	iconMarker = ge.createIcon('');
+	iconMarker.setHref('http://img4.hostingpics.net/pics/926546mouton.png');
+	styleMarker = ge.createStyle(''); //create a new style
+	styleMarker.getIconStyle().setIcon(iconMarker); //apply the icon to the style
+	
+	addSheep(5);
 }
 
 function failureCB(instance) {
@@ -106,6 +96,24 @@ function failureCallback(errorCode){
 	END OF INIT
 */
 
+// Define a custom icon.
+
+
+function addSheep(numSheep){
+	for(i=0;i<numSheep;i++){
+
+		placemark = ge.createPlacemark('');
+		placemark.setStyleSelector(styleMarker);
+
+		// Set the placemark's location.  
+		point = ge.createPoint('');
+	 	point.setLatitude((centerMapLat-mapSize/2)+(Math.random()*mapSize));
+		point.setLongitude((centerMapLon-mapSize/2)+(Math.random()*mapSize));
+		placemark.setGeometry(point);
+
+		ge.getFeatures().appendChild(placemark);
+	}
+}
 
 document.onkeypress = function(e) {
    	switch (e.keyCode) {
@@ -118,7 +126,6 @@ document.onkeypress = function(e) {
 			sendToActionScript('{"action":"zoom","value":"'+altitudeSoucoupe+'"}');
 		 break;
 	}
-	console.log('altitudeSoucoupe : ' + altitudeSoucoupe);
 	
 	camera.setAltitude(altitudeSoucoupe);
 	ge.getView().setAbstractView(camera);
@@ -173,9 +180,16 @@ document.onkeydown = function(e){
 
 var enterFrame = function (){
 	setTimeout(function() {
-		camera.setLatitude(camera.getLatitude() + bougeX);
-		camera.setLongitude(camera.getLongitude() + bougeY);
+
+		depCamLat = camera.getLatitude() + bougeX;
+		depCamLon = camera.getLongitude() + bougeY;
+		if(depCamLat < (centerMapLat + mapSize) && depCamLat > (centerMapLat - mapSize) ){
+			camera.setLatitude(depCamLat);
+		}
+		if(depCamLon < (centerMapLon + mapSize) && depCamLon > (centerMapLon - mapSize) ){
+			camera.setLongitude(depCamLon);
+		}
 		ge.getView().setAbstractView(camera);
 		enterFrame();
-	},20);
+	},50);
 }
