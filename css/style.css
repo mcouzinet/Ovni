@@ -10,6 +10,7 @@ a{text-decoration: none; color:inherit}
 ins{text-decoration: none;}
 del{text-decoration: line-through;}
 table{border-collapse: collapse;border-spacing: 0;}
+
 #content{
 	width:960px;
 	height:600px;
