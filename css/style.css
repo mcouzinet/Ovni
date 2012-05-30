@@ -52,3 +52,30 @@ table{border-collapse: collapse;border-spacing: 0;}
 	top:460px;
 	left:350px;
 }
+#jauge_poids{
+	width:92px;
+	height:18px;
+	z-index:20000;
+	background: url('../img/dashboard/aiguille_poids.png');
+	position:relative;
+	top:85px;
+	left:12px;
+}
+#compteur_hauteur{
+	width:32px;
+	height:120px;
+	z-index:10000;
+	background: url('../img/dashboard/hauteur.png');
+	position:relative;
+	top:340px;
+	left:50px;
+}
+#jauge_hauteur{
+	width:19px;
+	height:17px;
+	z-index:10000;
+	background: url('../img/dashboard/point_hauteur.png');
+	position:relative;
+	top:0px;
+	left:6px;
+}
