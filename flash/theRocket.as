@@ -1,1 +1,0 @@
-﻿package {    import flash.display.MovieClip;    import flash.events.*;	public class theRocket extends MovieClip{				public function theRocket(){		}	}}
