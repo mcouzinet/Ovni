@@ -53,8 +53,9 @@ function sendToActionScript(value){
 
 
 
-function initCB(ge) {
+function initCB(instance) {
 
+   	ge = instance;
   	ge.getWindow().setVisibility(true);
 	var options = ge.getOptions();   
 	options.setStatusBarVisibility(false);  
@@ -128,47 +129,43 @@ document.onkeyup = function(e){
 	switch (e.keyCode) {
 		 case 38: //Bouton Up
 			bougeX = 0;
-			sendToActionScript('{"action":"stopbouge","value":"droite"}');
 		 break;
 		 case 40: //Bouton Down
 			bougeX = 0;
-			sendToActionScript('{"action":"stopbouge","value":"gauche"}');
 		 break;
 		 case 37: //Bouton Left
 			bougeY = 0;
-			sendToActionScript('{"action":"stopbouge","value":"gauche"}');
 		 break;
 		 case 39: //Bouton Right
 			bougeY = 0;
-			sendToActionScript('{"action":"stopbouge","value":"droite"}');
 		 break;
 	}
 }
 
-document.onkeydown = function(e){
 
+
+document.onkeydown = function(e){
+	// Calcul de la distance
+	lookAt = ge.getView().copyAsLookAt(ge.ALTITUDE_RELATIVE_TO_GROUND);
+	camera = ge.getView().copyAsCamera(ge.ALTITUDE_RELATIVE_TO_GROUND);
 	distX = camera.getLatitude()-point.getLatitude();
 	distY = camera.getLongitude()-point.getLongitude();
-	distance = Math.sqrt(Math.pow(distX,2)+Math.pow(distY,2));
+	var distance = Math.sqrt(Math.pow(distX,2)+Math.pow(distY,2));
 	
 	//Déplacement sur la carte
 
 	switch (e.keyCode) {
 		 case 38: //Bouton Up
 			bougeX = 0.000012;
-			sendToActionScript('{"action":"bouge","value":"droite"}');
 		 break;
 		 case 40: //Bouton Down
 			bougeX = -0.000012;
-			sendToActionScript('{"action":"bouge","value":"gauche"}');
 		 break;
 		 case 37: //Bouton Left
 			bougeY = -0.000012;
-			sendToActionScript('{"action":"bouge","value":"gauche"}');
 		 break;
 		 case 39: //Bouton Right
 			bougeY = 0.000012;
-			sendToActionScript('{"action":"bouge","value":"droite"}');
 		 break;
 	}
 	enterFrame();
