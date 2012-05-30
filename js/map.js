@@ -71,7 +71,7 @@ function initCB(instance) {
 
   	// Look at the placemark we created.
 	var la = ge.createLookAt('');
-	la.set(45.4943800000006, 2.42566000000163, 0, ge.ALTITUDE_RELATIVE_TO_GROUND, 0, 0, 200);
+	la.set(45.4943800000006, 2.42566000000163, 0, ge.ALTITUDE_RELATIVE_TO_GROUND, 0, 0, 100);
 	ge.getView().setAbstractView(la);
 	
 	iconMarker = ge.createIcon('');
@@ -117,12 +117,16 @@ function addSheep(numSheep){
 
 document.onkeypress = function(e) {
    	switch (e.keyCode) {
-		 case 97: /*A*/
+		 case 97: /*A - Zoom +*/
 			altitudeSoucoupe -= (altitudeSoucoupe > 100)?100:0;
+			console.log(altitudeSoucoupe);
+			$("#jauge_hauteur").animate({top: (altitudeSoucoupe-100)/7.5+"px"},500);
 			sendToActionScript('{"action":"zoom","value":"'+altitudeSoucoupe+'"}');
 		 break;
-		 case 122: /*Z*/
+		 case 122: /*Z - Zoom -*/
  			altitudeSoucoupe += (altitudeSoucoupe < 1000)?100:0;
+			console.log(altitudeSoucoupe);
+			$("#jauge_hauteur").animate({top: (altitudeSoucoupe-100)/7.5+"px"},500);
 			sendToActionScript('{"action":"zoom","value":"'+altitudeSoucoupe+'"}');
 		 break;
 	}
