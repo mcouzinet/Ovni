@@ -85,15 +85,22 @@ function sendToActionScript(value){
 // Reception des valeurs par javascript
 function sendToJavaScript(value) {
 	console.log('sendToJavaScript : ' + value);
-	
 	data = json_parse(value,function(key,value){return value;});
 	console.log('data : ' + data.action);
-	
-	//data = json_parse(value,function(){return;});
-	//console.log('data : ' + data.action);
-	if (value.action == 'choppe'){
-		console.log("mouton");
-		document.getElementById("bouton").style.backgroundPosition="0"+"0";
+	if (data.action == 'choppe'){
+		document.getElementById("bouton").style.backgroundPosition="0px 0px";
+		console.log(data.numero);
+		for(i=0;i<data.numero;i++){
+			if (tabMou[i] = data.numero){
+				console.log(Mouton(data.numero));
+				//delete Mouton(data.numero);
+				//ge.getFeatures().removeChild(features.item(i));
+				//ge.getFeatures().removeChild(Mouton[data.numero].gePlacemark); 
+			}
+		}
+	}
+	if (data.action == 'gameOver'){
+		//document.getElementById("gameOver").style.display="block";
 	}
 }
 
@@ -314,6 +321,8 @@ function display(div){
 		break;
 		case 6:
 			document.getElementById("gameOver").style.display="none";
+			statut=true;
+			Decompte();
 		break;
 	}
 }
