@@ -35,7 +35,6 @@ function page_init(){
 	if(google){
 		google.earth.createInstance('map3d', initCB, failureCallback);
 	}
-	Decompte();
 }
 	
 function Decompte(){
@@ -86,6 +85,8 @@ function sendToActionScript(value){
 // Reception des valeurs par javascript
 function sendToJavaScript(value) {
 	console.log('sendToJavaScript : ' + value);
+	data = eval('('+value+')');
+	console.log('data : ' + data.action);
 	if (value.action == 'choppe'){
 		console.log("mouton");
 		document.getElementById("bouton").style.backgroundPosition="0"+"0";
@@ -298,6 +299,7 @@ function display(div){
 		case 3:
 			document.getElementById("intro").style.display="none";
 			newGame();
+			Decompte();
 		break;
 		case 4:
 			document.getElementById("home").style.display="block";
