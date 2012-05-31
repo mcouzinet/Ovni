@@ -90,6 +90,9 @@ function sendToJavaScript(value) {
 	if (data.action == 'choppe'){
 		document.getElementById("bouton").style.backgroundPosition="0px 0px";
 	}
+	if (data.action == 'gameOver'){
+		//document.getElementById("gameOver").style.display="block";
+	}
 }
 
 function initCB(instance) {
@@ -310,6 +313,7 @@ function display(div){
 		break;
 		case 6:
 			document.getElementById("gameOver").style.display="none";
+			Decompte();
 		break;
 	}
 }
