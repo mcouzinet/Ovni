@@ -134,6 +134,9 @@ html, body {
 	border:3px solid #66b345;
 	padding:0px 67px;
 }
+#home{
+	display:block;
+}
 #home ul li{
 	margin-bottom:90px;
 }
@@ -181,6 +184,21 @@ html, body {
 
 #touches p{
 	margin-bottom:85px;
+}
+
+#titreEcran{
+position:relative;
+top:0px;
+}
+
+#textEcran{
+position:relative;
+top:130px;
+}
+
+#boutonEcran{
+position:relative;
+top:300px;
 }
 
 #content{
