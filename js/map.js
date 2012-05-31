@@ -7,6 +7,7 @@ var iconMarker,
 	keyDown,
 	placemark,
 	ge,
+	interfaceReady = false,
 	mapSize = 0.008,
 	tabMou = new Array,
 	altitudeSoucoupe = 500,
@@ -35,6 +36,12 @@ function timer(){
 }
 
 
+function isReady() {
+	interfaceReady = true;
+	console.log('READY');
+	return interfaceReady;
+}
+
 function page_init(){
 	if(google){
 		google.earth.createInstance('map3d', initCB, failureCallback);
@@ -51,7 +58,10 @@ var newGame = function(){
 	lookAt = ge.getView().copyAsLookAt(ge.ALTITUDE_RELATIVE_TO_GROUND);
 	camera = ge.getView().copyAsCamera(ge.ALTITUDE_RELATIVE_TO_GROUND);
 	numSheep = 5;
-	sendToActionScript('{"action":"init","numSheep":"'+numSheep+'"}');
+	if(interfaceReady){
+	 	sendToActionScript('{"action":"init","numSheep":"'+numSheep+'"}');
+	}
+	//sendToActionScript('{"action":"init","numSheep":"'+numSheep+'"}');
 	camera.setAltitude(500);
 }
 
