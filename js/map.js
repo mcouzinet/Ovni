@@ -1,43 +1,30 @@
 // chargement de la librairie google
 google.load("earth", "1");
 
-var jsReady = false;
-var ge;
-var placemark;
-var dragInfo = null;
-var position,iconMarker,styleMarker,keyDown;
-var tabMou = new Array;
-var altitudeSoucoupe = 500;
-var bougeX =0;
-var bougeY =0;
-var zoom = 0;
-var numSheep = 5;
-var distGetSheep = 0.0002;
+// Variable
+var iconMarker,
+	styleMarker,
+	keyDown,
+	placemark,
+	ge,
+	mapSize = 0.008,
+	tabMou = new Array,
+	altitudeSoucoupe = 500,
+	bougeX =0,
+	bougeY =0,
+	zoom = 0,
+	numSheep = 5;
 
-const centerMapLat = 45.4943800000006;
-const centerMapLon = 2.42566000000163;
-const mapSize = 0.008;
-
-// Reception des valeurs par javascript
-function sendToJavaScript(value) {
-     console.log('sendToJavaScript : ' + value);
-}
-
+// Constante
+const centerMapLat = 45.4943800000006,
+	  centerMapLon = 2.42566000000163,
+	  distGetSheep = 0.0002;
+	  
 $(function(){
-	init();
-});
-
-
-function init(){
-	jsReady = true;
 	if(google){
-		google.earth.createInstance('map3d', initCB, failureCB);
+		google.earth.createInstance('map3d', initCB, failureCallback);
 	}
-}
-
-function isReady(){
-	return jsReady;
-}
+});
 
 function thisMovie(movieName){
 	if(navigator.appName.indexOf("Microsoft") != -1){
@@ -51,17 +38,17 @@ function thisMovie(movieName){
 function sendToActionScript(value){
 	try{
 		thisMovie("ExternalInterfaceExample").sendToActionScript(value);
-	}catch(e){
-		console.log(e);
+	}catch(error){
+		console.log(error);
 	}
 }
 
-
-
-
+// Reception des valeurs par javascript
+function sendToJavaScript(value) {
+     console.log('sendToJavaScript : ' + value);
+}
 
 function initCB(instance) {
-
    	ge = instance;
   	ge.getWindow().setVisibility(true);
 	var options = ge.getOptions();   
@@ -72,7 +59,6 @@ function initCB(instance) {
 	options.setAtmosphereVisibility(false);  
 	options.setMouseNavigationEnabled(false);
 
-  	// Look at the placemark we created.
 	var la = ge.createLookAt('');
 	la.set(45.4943800000006, 2.42566000000163, 0, ge.ALTITUDE_RELATIVE_TO_GROUND, 0, 0, 100);
 	ge.getView().setAbstractView(la);
@@ -85,39 +71,21 @@ function initCB(instance) {
 	addSheep(numSheep);
 }
 
-function failureCB(instance) {
-   ge = instance;
-   ge.getWindow().setVisibility(true);
-}
-
 function failureCallback(errorCode){
-	console.log('ERROR');
+	console.log('Google Earth ERROR : ' + errorCode);
 }
 
-
-/*
-	END OF INIT
-*/
-
-// Define a custom icon.
-
-function Mouton() {
-	
-	placemark = ge.createPlacemark('');
-	placemark.setStyleSelector(styleMarker);
-
-	// Set the placemark's location.  
+var Mouton = function() {
+	this.placemark = ge.createPlacemark('');
+	this.placemark.setStyleSelector(styleMarker);
 	this.point = ge.createPoint('');
  	this.point.setLatitude((centerMapLat-mapSize/2)+(Math.random()*mapSize));
 	this.point.setLongitude((centerMapLon-mapSize/2)+(Math.random()*mapSize));
-	placemark.setGeometry(this.point);
-
-	ge.getFeatures().appendChild(placemark);
-
+	this.placemark.setGeometry(this.point);
+	ge.getFeatures().appendChild(this.placemark);
 	return this;
 }
 
-// retourne la distance entre le mouton et le centre de la camera
 Mouton.prototype.calculDistance = function() {
 	lookAt = ge.getView().copyAsLookAt(ge.ALTITUDE_RELATIVE_TO_GROUND);
 	camera = ge.getView().copyAsCamera(ge.ALTITUDE_RELATIVE_TO_GROUND);
@@ -146,7 +114,6 @@ document.onkeypress = function(e) {
 			sendToActionScript('{"action":"zoom","value":"'+altitudeSoucoupe+'"}');
 		 break;
 	}
-	
 	camera.setAltitude(altitudeSoucoupe);
 	ge.getView().setAbstractView(camera);
 }
