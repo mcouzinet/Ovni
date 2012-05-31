@@ -5,11 +5,14 @@ var jsReady = false;
 var ge;
 var placemark;
 var dragInfo = null;
-var position,iconMarker,styleMarker;
+var position,iconMarker,styleMarker,keyDown;
+var tabMou = new Array;
 var altitudeSoucoupe = 500;
 var bougeX =0;
 var bougeY =0;
 var zoom = 0;
+var numSheep = 5;
+var distGetSheep = 0.0002;
 
 const centerMapLat = 45.4943800000006;
 const centerMapLon = 2.42566000000163;
@@ -79,7 +82,7 @@ function initCB(instance) {
 	styleMarker = ge.createStyle(''); //create a new style
 	styleMarker.getIconStyle().setIcon(iconMarker); //apply the icon to the style
 	ge.getOptions().setFlyToSpeed(ge.SPEED_TELEPORT);
-	addSheep(5);
+	addSheep(numSheep);
 }
 
 function failureCB(instance) {
@@ -98,20 +101,35 @@ function failureCallback(errorCode){
 
 // Define a custom icon.
 
+function Mouton() {
+	
+	placemark = ge.createPlacemark('');
+	placemark.setStyleSelector(styleMarker);
 
-function addSheep(numSheep){
-	for(i=0;i<numSheep;i++){
+	// Set the placemark's location.  
+	this.point = ge.createPoint('');
+ 	this.point.setLatitude((centerMapLat-mapSize/2)+(Math.random()*mapSize));
+	this.point.setLongitude((centerMapLon-mapSize/2)+(Math.random()*mapSize));
+	placemark.setGeometry(this.point);
 
-		placemark = ge.createPlacemark('');
-		placemark.setStyleSelector(styleMarker);
+	ge.getFeatures().appendChild(placemark);
 
-		// Set the placemark's location.  
-		point = ge.createPoint('');
-	 	point.setLatitude((centerMapLat-mapSize/2)+(Math.random()*mapSize));
-		point.setLongitude((centerMapLon-mapSize/2)+(Math.random()*mapSize));
-		placemark.setGeometry(point);
+	return this;
+}
 
-		ge.getFeatures().appendChild(placemark);
+// retourne la distance entre le mouton et le centre de la camera
+Mouton.prototype.calculDistance = function() {
+	lookAt = ge.getView().copyAsLookAt(ge.ALTITUDE_RELATIVE_TO_GROUND);
+	camera = ge.getView().copyAsCamera(ge.ALTITUDE_RELATIVE_TO_GROUND);
+	distX = camera.getLatitude() - this.point.getLatitude();
+	distY = camera.getLongitude() - this.point.getLongitude();
+	distance = Math.sqrt(Math.pow(distX,2)+Math.pow(distY,2));
+	return distance;
+}
+
+function addSheep(nomSheep){
+	for(i=0;i<nomSheep;i++){
+		tabMou[i] = new Mouton();
 	}
 }
 
@@ -167,17 +185,14 @@ document.onkeyup = function(e){
 			bougeY = 0;
 		 break;
 	}
+	keyDown = false;
 }
 
 
 
 document.onkeydown = function(e){
 	// Calcul de la distance
-	lookAt = ge.getView().copyAsLookAt(ge.ALTITUDE_RELATIVE_TO_GROUND);
-	camera = ge.getView().copyAsCamera(ge.ALTITUDE_RELATIVE_TO_GROUND);
-	distX = camera.getLatitude()-point.getLatitude();
-	distY = camera.getLongitude()-point.getLongitude();
-	var distance = Math.sqrt(Math.pow(distX,2)+Math.pow(distY,2));
+
 	
 	//Déplacement sur la carte
 
@@ -195,11 +210,18 @@ document.onkeydown = function(e){
 			bougeY = 0.00000002*altitudeSoucoupe;
 		 break;
 	}
+	keyDown = true;
 	enterFrame();
 }
 
 var enterFrame = function (){
 	setTimeout(function() {
+		for(i=0;i<numSheep;i++){
+			dist = tabMou[i].calculDistance();
+			if(dist < distGetSheep){
+				sendToActionScript('{"action":"mouton","value":"'+dist+'"}');
+			}
+		}
 
 		depCamLat = camera.getLatitude() + bougeX;
 		depCamLon = camera.getLongitude() + bougeY;
@@ -210,6 +232,6 @@ var enterFrame = function (){
 			camera.setLongitude(depCamLon);
 		}
 		ge.getView().setAbstractView(camera);
-		enterFrame();
+		if(keyDown){enterFrame();}
 	},50);
 }
