@@ -173,19 +173,6 @@ document.onkeyup = function(e){
 
 
 document.onkeydown = function(e){
-	// Calcul de la distance
-<<<<<<< HEAD
-
-=======
-	lookAt = ge.getView().copyAsLookAt(ge.ALTITUDE_RELATIVE_TO_GROUND);
-	camera = ge.getView().copyAsCamera(ge.ALTITUDE_RELATIVE_TO_GROUND);
-	distX = camera.getLatitude()-point.getLatitude();
-	distY = camera.getLongitude()-point.getLongitude();
-	var distance = Math.sqrt(Math.pow(distX,2)+Math.pow(distY,2));
-	console.log("distance : "+distance);
->>>>>>> fdlskhj
-	
-	//Déplacement sur la carte
 
 	switch (e.keyCode) {
 		 case 38: //Bouton Up
