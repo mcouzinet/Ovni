@@ -215,10 +215,6 @@ var enterFrame = function (){
 		camera.setAltitude(altitudeSoucoupe);
 		depCamLat = camera.getLatitude() + bougeX;
 		depCamLon = camera.getLongitude() + bougeY;
-		// $("#point_radar").css({
-		// 			top:((31*(centerMapLat+mapSize/2-camera.getLatitude()))/mapSize+15)+"px",
-		// 			left:(31-(31*(centerMapLon+mapSize/2-camera.getLongitude()))/mapSize+15)+"px"
-		// 		});
 		document.getElementById("point_radar").style.top=((31*(centerMapLat+mapSize/2-camera.getLatitude()))/mapSize+15)+"px";
 		document.getElementById("point_radar").style.left=(31-(31*(centerMapLon+mapSize/2-camera.getLongitude()))/mapSize+15)+"px";
 		if(depCamLat < (centerMapLat + mapSize) && depCamLat > (centerMapLat - mapSize) ){
