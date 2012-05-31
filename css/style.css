@@ -95,12 +95,9 @@ table{border-collapse: collapse;border-spacing: 0;}
 #viseur{
 	width:231px;
 	height:188px;
-	z-index:200;
+	z-index:300;
 	position:absolute;
-	/*background: url('../img/dashboard/viseur.png');
-		background-size:50%;*/
-	top:200px;
-	left:130px;
+	top:0px;
 }
 #bottom{
 	width:480px;
