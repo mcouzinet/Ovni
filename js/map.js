@@ -64,6 +64,9 @@ function Decompte(){
 		document.getElementById("temps").innerHTML = secondes;
 		Time_ReLance = setTimeout("Decompte()", 1000);
 	}
+	else{
+		document.getElementById("gameOver").style.display="block";
+	}
 }
 
 function newGame(){
