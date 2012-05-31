@@ -92,7 +92,6 @@ function sendToJavaScript(value) {
 		console.log(data.numero);
 		for(i=0;i<data.numero;i++){
 			if (tabMou[i] = data.numero){
-				console.log(Mouton(data.numero));
 				//delete Mouton(data.numero);
 				//ge.getFeatures().removeChild(features.item(i));
 				//ge.getFeatures().removeChild(Mouton[data.numero].gePlacemark); 
