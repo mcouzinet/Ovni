@@ -14,23 +14,32 @@ var iconMarker,
 	bougeY =0,
 	zoom = 0,
 	numSheep = 5
-	vitesseDeplacement = 0.00000008;
+	vitesseDeplacement = 0.00000008,
+	duree = 180;
  
 // Constante
 const centerMapLat = 45.4943800000006,
 	  centerMapLon = 2.42566000000163,
 	  distGetSheep = 0.0008;
-	  
-// $(function(){
-// 	if(google){
-// 		google.earth.createInstance('map3d', initCB, failureCallback);
-// 	}
-// });
+
+function timeMsg(temps){
+	Temps=temps;
+	document.getElementById("temps").innerHTML = temps;	
+	setTimeout(timer,1000);
+}
+
+function timer(){
+	if (Temps>0){
+		timeMsg(Temps-1);
+	}
+}
+
 
 function page_init(){
 	if(google){
 		google.earth.createInstance('map3d', initCB, failureCallback);
 	}
+	timeMsg(duree);
 }
 
 function start(){
@@ -221,30 +230,4 @@ var enterFrame = function (){
 		ge.getView().setAbstractView(camera);
 		if(keyDown){enterFrame();}
 	},20);
-}
-
-//Gestion de la fin de la partie et du highScore
-function finPartie(score)
-{
-	$('#map3d').html("Votre score = "+score+"<FORM NAME=\"formScore\"><INPUT TYPE=\"text\" NAME=\"input\" VALUE=\"Pseudo\"><BR><INPUT TYPE=\"button\" NAME=\"bouton\" VALUE=\"Soumettre\" onClick=\"highScore("+score+");\"></FORM>");
-}
-
-function highScore(scorePerso)
-{
-	var pseudo=$("input").val();
-	$.getJSON("php/score.php",
-				{pseudo:pseudo, score:scorePerso},
-				function(data) {
-					$('#map3d').html("");
-					$.each(data, function(i,score){
-						if(isset(score.pseudo))
-							$('#map3d').append((i+1)+" "+score.pseudo+" "+score.score+"</BR>");
-						else
-							$('#map3d').append("</BR>ma position est : "+score.position+" avec un score de "+scorePerso);
-					});
-				  });
-}
-
-function isset(variable) {
-   return (typeof variable != 'undefined');
 }
