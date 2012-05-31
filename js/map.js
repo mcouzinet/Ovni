@@ -26,18 +26,6 @@ const centerMapLat = 45.4943800000006,
 	  centerMapLon = 2.42566000000163,
 	  distGetSheep = 0.0008;
 
-// function timeMsg(temps){
-// 	Temps=temps;
-// 	document.getElementById("temps").innerHTML = temps;	
-// 	setTimeout(timer,1000);
-// }
-// 
-// function timer(){
-// 	if (Temps>0){
-// 		timeMsg(Temps-1);
-// 	}
-// }
-
 function isReady() {
 	interfaceReady = true;
 	return interfaceReady;
@@ -47,7 +35,6 @@ function page_init(){
 	if(google){
 		google.earth.createInstance('map3d', initCB, failureCallback);
 	}
-	// timeMsg(duree);
 	Decompte();
 }
 	
@@ -98,9 +85,10 @@ function sendToActionScript(value){
 
 // Reception des valeurs par javascript
 function sendToJavaScript(value) {
-     console.log('sendToJavaScript : ' + value);
-	if(value.action == 'choppe'){
-		// monton dans la soucoupe
+	console.log('sendToJavaScript : ' + value);
+	if (value.action == 'choppe'){
+		console.log("mouton");
+		document.getElementById("bouton").style.backgroundPosition="0"+"0";
 	}
 }
 
