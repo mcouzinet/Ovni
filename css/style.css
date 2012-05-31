@@ -134,6 +134,54 @@ html, body {
 	border:3px solid #66b345;
 	padding:0px 67px;
 }
+#home ul li{
+	margin-bottom:90px;
+}
+#home ul{
+	margin-top:40px;
+}
+
+#intro .bouton{
+	position:absolute;
+	bottom:100px;
+	left:230px;
+}
+
+#scores ul{
+	width:300px;
+	text-align:left;
+	margin:30px auto 0 auto;
+}
+
+#scores li{
+	display:inline-block;
+	width:300px;
+	position:relative;
+}
+
+#scores span{
+	position:absolute;
+	right:0px;
+}
+
+#scores .bouton{
+	position:absolute;
+	bottom:100px;
+	left:230px;
+}
+
+#touches div{
+	width:350px;
+	padding-left:400px;
+	height:376px;
+	background:url('../img/touches.png') no-repeat;
+	margin-left:50px;
+	text-align:left;
+}
+
+#touches p{
+	margin-bottom:85px;
+}
 
 #content{
 	width:960px;
