@@ -85,8 +85,12 @@ function sendToActionScript(value){
 // Reception des valeurs par javascript
 function sendToJavaScript(value) {
 	console.log('sendToJavaScript : ' + value);
-	data = eval('('+value+')');
+	
+	data = json_parse(value,function(key,value){return value;});
 	console.log('data : ' + data.action);
+	
+	//data = json_parse(value,function(){return;});
+	//console.log('data : ' + data.action);
 	if (value.action == 'choppe'){
 		console.log("mouton");
 		document.getElementById("bouton").style.backgroundPosition="0"+"0";
