@@ -96,8 +96,10 @@ table{border-collapse: collapse;border-spacing: 0;}
 	width:231px;
 	height:188px;
 	z-index:300;
+	background: url('../img/dashboard/viseur.png');
 	position:absolute;
-	top:0px;
+	top:200px;
+	left:120px;
 }
 #bottom{
 	width:480px;
@@ -113,6 +115,15 @@ table{border-collapse: collapse;border-spacing: 0;}
 	position:absolute;
 	top:70px;
 	left:360px;
+}
+#bottom #radar #point_radar{
+	width:3px;
+	height:3px;
+	background-color:#4ccfff;
+	position:absolute;
+	top:25px;
+	left:25px;
+	border:1px solid rgb(88,146,242);
 }
 #bottom #compteur_hauteur{
 	width:28px;
