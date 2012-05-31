@@ -139,28 +139,14 @@ document.onkeypress = function(e) {
 			altitudeSoucoupe -= (altitudeSoucoupe > 100)?100:0;
 			console.log(altitudeSoucoupe);
 			console.log((altitudeSoucoupe-100)/7.5);
-			$("#jauge_hauteur").animate({top: (-(altitudeSoucoupe-100)/7.5)+120+"px"},100);
-			// $("#viseur img").animate({
-			// 				width: (altitudeSoucoupe)/3+"px"
-			// 			},100);
-			// 			$("#viseur").animate({
-			// 				marginTop: -((altitudeSoucoupe)/3)/2+"px",
-			// 				marginLeft: -((altitudeSoucoupe)/3)/2+"px"
-			// 			},100);
+			$("#jauge_hauteur").animate({top: (-(altitudeSoucoupe-100)/7.5)+120+"px"},10);
 			sendToActionScript('{"action":"zoom","value":"'+altitudeSoucoupe+'"}');
 		 break;
 		 case 122: /*Z - Zoom -*/
  			altitudeSoucoupe += (altitudeSoucoupe < 1000)?100:0;
 			console.log(altitudeSoucoupe);
 			console.log((altitudeSoucoupe-100)/7.5);
-			$("#jauge_hauteur").animate({top: (-(altitudeSoucoupe-100)/7.5)+120+"px"},100);
-			// $("#viseur img").animate({
-			// 				width: (altitudeSoucoupe)/3+"px"
-			// 			},100);
-			// 			$("#viseur").animate({
-			// 				marginTop: -((altitudeSoucoupe)/3)/2+"px",
-			// 				marginLeft: -((altitudeSoucoupe)/3)/2+"px"
-			// 			},100);
+			$("#jauge_hauteur").animate({top: (-(altitudeSoucoupe-100)/7.5)+120+"px"},10);
 			sendToActionScript('{"action":"zoom","value":"'+altitudeSoucoupe+'"}');
 		 break;
 	}
