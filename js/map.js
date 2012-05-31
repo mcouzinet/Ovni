@@ -94,6 +94,9 @@ function sendToActionScript(value){
 // Reception des valeurs par javascript
 function sendToJavaScript(value) {
      console.log('sendToJavaScript : ' + value);
+	if(value.action == 'choppe'){
+		// monton dans la soucoupe
+	}
 }
 
 function initCB(instance) {
