@@ -40,34 +40,6 @@ html, body {
 	margin:0;
 }
 
-#corps{
-	width:100%;
-	background:url('../img/pelouse.png') repeat;
-}
-
-.contener{
-	width:960px;
-	margin:0 auto;
-	padding:20px 0;
-	position:relative;
-}
-.herbe{
-	width:100%;
-	height:22px;
-	background:url('../img/herbe.png') repeat-x;
-	position:absolute;
-	bottom:0px;
-}
-
-.moutons{
-	width:271px;
-	height:70px;
-	background:url('../img/moutons.png') repeat-x;
-	position:absolute;
-	top:-90px;
-	left:200px;
-}
-
 #header{
 	width:100%;
 	height:145px;
@@ -94,6 +66,34 @@ html, body {
 	font-family:Grilled;
 	font-size:30px;
 	margin:0px auto;
+}
+
+#corps{
+	width:100%;
+	background:url('../img/pelouse.png') repeat;
+}
+
+.contener{
+	width:960px;
+	margin:0 auto;
+	padding:20px 0;
+	position:relative;
+}
+.herbe{
+	width:100%;
+	height:22px;
+	background:url('../img/herbe.png') repeat-x;
+	position:absolute;
+	bottom:0px;
+}
+
+.moutons{
+	width:271px;
+	height:70px;
+	background:url('../img/moutons.png') repeat-x;
+	position:absolute;
+	top:-90px;
+	left:200px;
 }
 
 #game{
