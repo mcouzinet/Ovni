@@ -35,6 +35,8 @@ var newGame = function(){
 	addSheep(numSheep);
 	lookAt = ge.getView().copyAsLookAt(ge.ALTITUDE_RELATIVE_TO_GROUND);
 	camera = ge.getView().copyAsCamera(ge.ALTITUDE_RELATIVE_TO_GROUND);
+	numSheep = 5;
+	sendToActionScript('{"action":"init","numSheep":"'+numSheep+'"}');
 	camera.setAltitude(500);
 }
 
@@ -104,7 +106,7 @@ Mouton.prototype.calculDistance = function() {
 	distX = camera.getLatitude() - this.point.getLatitude();
 	distY = camera.getLongitude() - this.point.getLongitude();
 	distance = Math.sqrt(Math.pow(distX,2)+Math.pow(distY,2));
-	if(this.point.getLatitude()<camera.getLatitude() || this.point.getLongitude()<camera.getLongitude()){
+	if(this.point.getLatitude()<camera.getLatitude() || this.point.getLongitude()>camera.getLongitude()){
 		distance = -distance;
 	}
 	return distance;
