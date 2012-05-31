@@ -116,14 +116,27 @@ table{border-collapse: collapse;border-spacing: 0;}
 	top:70px;
 	left:360px;
 }
-#bottom #radar #point_radar{
-	width:3px;
-	height:3px;
-	background-color:#4ccfff;
+#bottom #radar #map_radar{
+	width:66px;
+	height:66px;
+	background-color:red;
 	position:absolute;
-	top:25px;
-	left:25px;
-	border:1px solid rgb(88,146,242);
+	top:22px;
+	left:24px;
+	overflow:hidden;
+}
+#bottom #radar #point_radar{
+	/*width:3px;
+		height:3px;
+		background-color:#4ccfff;
+		position:absolute;
+		top:25px;
+		left:25px;
+		border:1px solid rgb(88,146,242);*/
+	/*width:7px;
+		height:7px;
+		z-index:100;
+		background: url('../img/dashboard/pointeur_radar.gif');*/
 }
 #bottom #compteur_hauteur{
 	width:28px;

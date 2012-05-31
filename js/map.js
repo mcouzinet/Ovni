@@ -137,15 +137,11 @@ document.onkeypress = function(e) {
    	switch (e.keyCode) {
 		 case 97: /*A - Zoom +*/
 			altitudeSoucoupe -= (altitudeSoucoupe > 100)?100:0;
-			console.log(altitudeSoucoupe);
-			console.log((altitudeSoucoupe-100)/7.5);
 			$("#jauge_hauteur").animate({top: (-(altitudeSoucoupe-100)/7.5)+120+"px"},10);
 			sendToActionScript('{"action":"zoom","value":"'+altitudeSoucoupe+'"}');
 		 break;
 		 case 122: /*Z - Zoom -*/
  			altitudeSoucoupe += (altitudeSoucoupe < 1000)?100:0;
-			console.log(altitudeSoucoupe);
-			console.log((altitudeSoucoupe-100)/7.5);
 			$("#jauge_hauteur").animate({top: (-(altitudeSoucoupe-100)/7.5)+120+"px"},10);
 			sendToActionScript('{"action":"zoom","value":"'+altitudeSoucoupe+'"}');
 		 break;
@@ -178,7 +174,16 @@ document.onkeyup = function(e){
 
 document.onkeydown = function(e){
 	// Calcul de la distance
+<<<<<<< HEAD
 
+=======
+	lookAt = ge.getView().copyAsLookAt(ge.ALTITUDE_RELATIVE_TO_GROUND);
+	camera = ge.getView().copyAsCamera(ge.ALTITUDE_RELATIVE_TO_GROUND);
+	distX = camera.getLatitude()-point.getLatitude();
+	distY = camera.getLongitude()-point.getLongitude();
+	var distance = Math.sqrt(Math.pow(distX,2)+Math.pow(distY,2));
+	console.log("distance : "+distance);
+>>>>>>> fdlskhj
 	
 	//Déplacement sur la carte
 
