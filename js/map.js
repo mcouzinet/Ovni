@@ -13,12 +13,13 @@ var iconMarker,
 	bougeX =0,
 	bougeY =0,
 	zoom = 0,
-	numSheep = 5;
-
+	numSheep = 5
+	vitesseDeplacement = 0.00000002;
+ 
 // Constante
 const centerMapLat = 45.4943800000006,
 	  centerMapLon = 2.42566000000163,
-	  distGetSheep = 0.0002;
+	  distGetSheep = 0.0008;
 	  
 $(function(){
 	if(google){
@@ -92,6 +93,9 @@ Mouton.prototype.calculDistance = function() {
 	distX = camera.getLatitude() - this.point.getLatitude();
 	distY = camera.getLongitude() - this.point.getLongitude();
 	distance = Math.sqrt(Math.pow(distX,2)+Math.pow(distY,2));
+	if(this.point.getLatitude()<camera.getLatitude() || this.point.getLongitude()<camera.getLongitude()){
+		distance = -distance;
+	}
 	return distance;
 }
 
@@ -140,26 +144,22 @@ document.onkeyup = function(e){
 	return false;
 }
 
-
-
 document.onkeydown = function(e){
-	console.log(e.keyCode);
 	switch (e.keyCode) {
 		 case 38: //Bouton Up
-			bougeX = 0.00000002*altitudeSoucoupe;
+			bougeX = vitesseDeplacement*altitudeSoucoupe;
 		 break;
 		 case 40: //Bouton Down
-			bougeX = -0.00000002*altitudeSoucoupe;
+			bougeX = -vitesseDeplacement*altitudeSoucoupe;
 		 break;
 		 case 37: //Bouton Left
-			bougeY = -0.00000002*altitudeSoucoupe;
+			bougeY = -vitesseDeplacement*altitudeSoucoupe;
 		 break;
 		 case 39: //Bouton Right
-			bougeY = 0.00000002*altitudeSoucoupe;
+			bougeY = vitesseDeplacement*altitudeSoucoupe;
 		 break;
 		case 65: /*A - Zoom +*/
 			altitudeSoucoupe -= (altitudeSoucoupe > 100)?100:0;
-			console.log('dqsdqs');
 			$("#jauge_hauteur").animate({top: (-(altitudeSoucoupe-100)/7.5)+120+"px"},10);
 			sendToActionScript('{"action":"zoom","value":"'+altitudeSoucoupe+'"}');
 		 break;
@@ -179,7 +179,7 @@ var enterFrame = function (){
 		for(i=0;i<numSheep;i++){
 			dist = tabMou[i].calculDistance();
 			if(dist < distGetSheep){
-				sendToActionScript('{"action":"mouton","value":"'+dist+'"}');
+				sendToActionScript('{"action":"mouton","num":"'+i+'","value":"'+dist+'"}');
 			}
 		}
 		camera.setAltitude(altitudeSoucoupe);
@@ -193,5 +193,5 @@ var enterFrame = function (){
 		}
 		ge.getView().setAbstractView(camera);
 		if(keyDown){enterFrame();}
-	},50);
+	},300);
 }
