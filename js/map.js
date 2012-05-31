@@ -105,6 +105,7 @@ document.onkeypress = function(e) {
    	switch (e.keyCode) {
 		 case 97: /*A - Zoom +*/
 			altitudeSoucoupe -= (altitudeSoucoupe > 100)?100:0;
+			console.log('dqsdqs');
 			$("#jauge_hauteur").animate({top: (-(altitudeSoucoupe-100)/7.5)+120+"px"},10);
 			sendToActionScript('{"action":"zoom","value":"'+altitudeSoucoupe+'"}');
 		 break;
@@ -142,7 +143,7 @@ document.onkeyup = function(e){
 
 
 document.onkeydown = function(e){
-
+	console.log(e.keyCode);
 	switch (e.keyCode) {
 		 case 38: //Bouton Up
 			bougeX = 0.00000002*altitudeSoucoupe;
@@ -155,6 +156,17 @@ document.onkeydown = function(e){
 		 break;
 		 case 39: //Bouton Right
 			bougeY = 0.00000002*altitudeSoucoupe;
+		 break;
+		case 65: /*A - Zoom +*/
+			altitudeSoucoupe -= (altitudeSoucoupe > 100)?100:0;
+			console.log('dqsdqs');
+			$("#jauge_hauteur").animate({top: (-(altitudeSoucoupe-100)/7.5)+120+"px"},10);
+			sendToActionScript('{"action":"zoom","value":"'+altitudeSoucoupe+'"}');
+		 break;
+		 case 90: /*Z - Zoom -*/
+ 			altitudeSoucoupe += (altitudeSoucoupe < 1000)?100:0;
+			$("#jauge_hauteur").animate({top: (-(altitudeSoucoupe-100)/7.5)+120+"px"},10);
+			sendToActionScript('{"action":"zoom","value":"'+altitudeSoucoupe+'"}');
 		 break;
 	}
 	keyDown = true;
@@ -170,7 +182,7 @@ var enterFrame = function (){
 				sendToActionScript('{"action":"mouton","value":"'+dist+'"}');
 			}
 		}
-
+		camera.setAltitude(altitudeSoucoupe);
 		depCamLat = camera.getLatitude() + bougeX;
 		depCamLon = camera.getLongitude() + bougeY;
 		if(depCamLat < (centerMapLat + mapSize) && depCamLat > (centerMapLat - mapSize) ){
