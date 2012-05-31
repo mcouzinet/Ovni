@@ -14,23 +14,32 @@ var iconMarker,
 	bougeY =0,
 	zoom = 0,
 	numSheep = 5
-	vitesseDeplacement = 0.00000008;
+	vitesseDeplacement = 0.00000008,
+	duree = 180;
  
 // Constante
 const centerMapLat = 45.4943800000006,
 	  centerMapLon = 2.42566000000163,
 	  distGetSheep = 0.0008;
-	  
-// $(function(){
-// 	if(google){
-// 		google.earth.createInstance('map3d', initCB, failureCallback);
-// 	}
-// });
+
+function timeMsg(temps){
+	Temps=temps;
+	document.getElementById("temps").innerHTML = temps;	
+	setTimeout(timer,1000);
+}
+
+function timer(){
+	if (Temps>0){
+		timeMsg(Temps-1);
+	}
+}
+
 
 function page_init(){
 	if(google){
 		google.earth.createInstance('map3d', initCB, failureCallback);
 	}
+	timeMsg(duree);
 }
 
 function start(){
@@ -216,10 +225,6 @@ var enterFrame = function (){
 		camera.setAltitude(altitudeSoucoupe);
 		depCamLat = camera.getLatitude() + bougeX;
 		depCamLon = camera.getLongitude() + bougeY;
-		// $("#point_radar").css({
-		// 			top:((31*(centerMapLat+mapSize/2-camera.getLatitude()))/mapSize+15)+"px",
-		// 			left:(31-(31*(centerMapLon+mapSize/2-camera.getLongitude()))/mapSize+15)+"px"
-		// 		});
 		document.getElementById("point_radar").style.top=((31*(centerMapLat+mapSize/2-camera.getLatitude()))/mapSize+15)+"px";
 		document.getElementById("point_radar").style.left=(31-(31*(centerMapLon+mapSize/2-camera.getLongitude()))/mapSize+15)+"px";
 		if(depCamLat < (centerMapLat + mapSize) && depCamLat > (centerMapLat - mapSize) ){
