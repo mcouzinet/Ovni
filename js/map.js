@@ -230,7 +230,6 @@ document.onkeydown = function(e){
 			}
 			break;		
 	}
-	console.log(e.keyCode);
 	keyDown = true;
 	enterFrame();
 	return false;
