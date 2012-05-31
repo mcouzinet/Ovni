@@ -146,18 +146,21 @@ document.onkeypress = function(e) {
 document.onkeyup = function(e){
 	// Envoie du numero de la touche à flash
 	switch (e.keyCode) {
-		 case 38: //Bouton Up
+		 case 38: // haut
 			bougeX = 0;
-		 break;
-		 case 40: //Bouton Down
+		 	break;
+		 case 40: // bas
 			bougeX = 0;
-		 break;
-		 case 37: //Bouton Left
+		 	break;
+		 case 37: // gauche
 			bougeY = 0;
-		 break;
-		 case 39: //Bouton Right
+		 	break;
+		 case 39: // droit
 			bougeY = 0;
-		 break;
+		 	break;
+		case 32 : // espace
+			sendToActionScript('{"action":"get","value":"off"}');
+			break;
 	}
 	keyDown = false;
 	return false;
@@ -165,31 +168,38 @@ document.onkeyup = function(e){
 
 document.onkeydown = function(e){
 	switch (e.keyCode) {
-		 case 38: //Bouton Up
+		// Déplcement
+		case 38 : // Haut
 			bougeX = vitesseDeplacement*altitudeSoucoupe;
-		 break;
-		 case 40: //Bouton Down
+			break;
+		case 40 : // bas
 			bougeX = -vitesseDeplacement*altitudeSoucoupe;
-		 break;
-		 case 37: //Bouton Left
+			break;
+		case 37 : // gauche
 			bougeY = -vitesseDeplacement*altitudeSoucoupe;
-		 break;
-		 case 39: //Bouton Right
+			break;
+		case 39 : // droit
 			bougeY = vitesseDeplacement*altitudeSoucoupe;
-		 break;
-		case 65: /*A - Zoom +*/
+			break;
+		// Zoom
+		case 65 : // A
 			altitudeSoucoupe -= (altitudeSoucoupe > 100)?100:0;
 			//$("#jauge_hauteur").css({top: (-(altitudeSoucoupe-100)/7.5)+120+"px"},10);
 			document.getElementById("jauge_hauteur").style.top=(-(altitudeSoucoupe-100)/7.5)+120+"px";
 			sendToActionScript('{"action":"zoom","value":"'+altitudeSoucoupe+'"}');
-		 break;
-		 case 90: /*Z - Zoom -*/
+			break;
+		case 90 : // Z
  			altitudeSoucoupe += (altitudeSoucoupe < 1000)?100:0;
 			//$("#jauge_hauteur").css({top: (-(altitudeSoucoupe-100)/7.5)+120+"px"});
 			document.getElementById("jauge_hauteur").style.top=(-(altitudeSoucoupe-100)/7.5)+120+"px";
 			sendToActionScript('{"action":"zoom","value":"'+altitudeSoucoupe+'"}');
-		 break;
+			break;
+		// Attrapage
+		case 32 : // espace
+			sendToActionScript('{"action":"get","value":"on"}');
+			break;		
 	}
+	console.log(e.keyCode);
 	keyDown = true;
 	enterFrame();
 	return false;
