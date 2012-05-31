@@ -56,12 +56,12 @@ function Decompte(){
 	console.log(temps_actuel);
 	var secondes = (temps_final - temps_actuel);
 	console.log(secondes);
-	document.getElementById("temps").innerHTML = secondes;
+	//document.getElementById("temps").innerHTML = secondes;
 }
 
-setTimeout(Decompte(),1000);
+//setTimeout(Decompte(),1000);
 
-var newGame = function(){
+function newGame(){
 	numSheep = 5;
 	addSheep(numSheep);
 	if(interfaceReady){
@@ -121,7 +121,8 @@ function failureCallback(errorCode){
 	console.log('Google Earth ERROR : ' + errorCode);
 }
 
-var Mouton = function() {
+var Mouton = function(num) {
+	this.numero = num;
 	this.placemark = ge.createPlacemark('');
 	this.placemark.setStyleSelector(styleMarker);
 	this.point = ge.createPoint('');
@@ -144,7 +145,7 @@ Mouton.prototype.calculDistance = function() {
 
 function addSheep(nomSheep){
 	for(i=0;i<nomSheep;i++){
-		tabMou[i] = new Mouton();
+		tabMou[i] = new Mouton(i);
 	}
 }
 
