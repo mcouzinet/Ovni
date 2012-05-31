@@ -23,18 +23,17 @@ const centerMapLat = 45.4943800000006,
 	  centerMapLon = 2.42566000000163,
 	  distGetSheep = 0.0008;
 
-function timeMsg(temps){
-	Temps=temps;
-	document.getElementById("temps").innerHTML = temps;	
-	setTimeout(timer,1000);
-}
-
-function timer(){
-	if (Temps>0){
-		timeMsg(Temps-1);
-	}
-}
-
+// function timeMsg(temps){
+// 	Temps=temps;
+// 	document.getElementById("temps").innerHTML = temps;	
+// 	setTimeout(timer,1000);
+// }
+// 
+// function timer(){
+// 	if (Temps>0){
+// 		timeMsg(Temps-1);
+// 	}
+// }
 
 function isReady() {
 	interfaceReady = true;
@@ -46,8 +45,21 @@ function page_init(){
 	if(google){
 		google.earth.createInstance('map3d', initCB, failureCallback);
 	}
-	timeMsg(duree);
+	// timeMsg(duree);
+	//time();
 }
+
+function Decompte(){
+	var CompteARebours = document.getElementById("temps");
+	var temps_actuel = new Date()/1000;
+	var temps_final = temps_actuel+duree;
+	console.log(temps_actuel);
+	var secondes = (temps_final - temps_actuel);
+	console.log(secondes);
+	document.getElementById("temps").innerHTML = secondes;
+}
+
+setTimeout(Decompte(),1000);
 
 function start(){
 	newGame();
