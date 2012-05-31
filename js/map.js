@@ -168,7 +168,9 @@ document.onkeyup = function(e){
 			bougeY = 0;
 		 	break;
 		case 32 : // espace
-			sendToActionScript('{"action":"get","value":"off"}');
+			if(keyDown == true){
+				sendToActionScript('{"action":"get","value":"off"}');
+			}
 			break;
 	}
 	keyDown = false;
@@ -193,19 +195,19 @@ document.onkeydown = function(e){
 		// Zoom
 		case 65 : // A
 			altitudeSoucoupe -= (altitudeSoucoupe > 100)?100:0;
-			//$("#jauge_hauteur").css({top: (-(altitudeSoucoupe-100)/7.5)+120+"px"},10);
 			document.getElementById("jauge_hauteur").style.top=(-(altitudeSoucoupe-100)/7.5)+120+"px";
 			sendToActionScript('{"action":"zoom","value":"'+altitudeSoucoupe+'"}');
 			break;
 		case 90 : // Z
  			altitudeSoucoupe += (altitudeSoucoupe < 1000)?100:0;
-			//$("#jauge_hauteur").css({top: (-(altitudeSoucoupe-100)/7.5)+120+"px"});
 			document.getElementById("jauge_hauteur").style.top=(-(altitudeSoucoupe-100)/7.5)+120+"px";
 			sendToActionScript('{"action":"zoom","value":"'+altitudeSoucoupe+'"}');
 			break;
 		// Attrapage
 		case 32 : // espace
-			sendToActionScript('{"action":"get","value":"on"}');
+			if(keyDown == false){
+				sendToActionScript('{"action":"get","value":"on"}');
+			}
 			break;		
 	}
 	console.log(e.keyCode);
