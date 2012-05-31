@@ -98,7 +98,7 @@ function initCB(instance) {
 	ge.getView().setAbstractView(la);
 	
 	iconMarker = ge.createIcon('');
-	iconMarker.setHref('http://img4.hostingpics.net/pics/926546mouton.png');
+	iconMarker.setHref('http://labs.cedricmarteau.com/img/mouton_vue_aerienne.png');
 	styleMarker = ge.createStyle(''); //create a new style
 	styleMarker.getIconStyle().setIcon(iconMarker); //apply the icon to the style
 	
