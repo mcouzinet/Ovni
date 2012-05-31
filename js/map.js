@@ -275,3 +275,34 @@ function highScore(scorePerso)
 function isset(variable) {
    return (typeof variable != 'undefined');
 }
+
+function display(div){
+	switch (div) {
+		case 0:
+			document.getElementById("intro").style.display="block";
+			document.getElementById("home").style.display="none";
+		break;
+		case 1:
+			document.getElementById("touches").style.display="block";
+			document.getElementById("home").style.display="none";
+		break;
+		case 2:
+			document.getElementById("scores").style.display="block";
+			document.getElementById("home").style.display="none";
+		break;
+		case 3:
+			document.getElementById("intro").style.display="none";
+		break;
+		case 4:
+			document.getElementById("home").style.display="block";
+			document.getElementById("scores").style.display="none";
+		break;
+		case 5:
+			document.getElementById("home").style.display="block";
+			document.getElementById("touches").style.display="none";
+		break;
+		case 6:
+			document.getElementById("gameOver").style.display="none";
+		break;
+	}
+}

@@ -51,19 +51,19 @@
 				<section id="home" class="ecran">
 					<p></p>
 					<ul>
-						<li><a href="#" class="bouton">JOUER</a></li>
-						<li><a href="#" class="bouton">RÈGLES DU JEU</a></li>
-						<li><a href="#" class="bouton">TOP SCORE</a></li>
+						<li><a href="#" class="bouton" onclick="display(0); return false;">JOUER</a></li>
+						<li><a href="#" class="bouton" onclick="display(1); return false;">INSTRUCTIONS</a></li>
+						<li><a href="#" class="bouton" onclick="display(2); return false;">TOP SCORE</a></li>
 					</ul>
 				</section>
 				<section id="intro" class="ecran">
 					<p>
 					LES CONDITIONS DE VIE PLUTONIENNES DEVIENNENT DE PLUS EN PLUS DIFFICILES POUR SES HABITANTS. AVEC L’HIVER QUI APPROCHE, LES PLUTONIENS N’ONT PLUS LE CHOIX : POUR SURVIVRE, ILS PARTENT EN EXPÉDITION VERS LA TERRE POUR RAMENER LE PLUS DE MOUTONS ET SE COUVRIR DE LAINE POUR SE RÉCHAUFFER. ATTENTION, LE TEMPS EST LIMITÉ ET LES HUMAINS NE VOUS LAISSERONT PAS FAIRE SI FACILEMENT. AU COMMANDE DE LA SOUCOUPE VOLANTE, VOUS ÊTES EN CHARGE DE CETTE IMPORTANTE MISSION.
 					</p>
-					<a href="#" class="bouton">LANCER LA MISSION</a>
+					<a href="#" class="bouton" onclick="display(3); return false;">LANCER LA MISSION</a>
 				</section>
 				<section id="scores" class="ecran">
-					<p>TOP SCORES</p>
+					<p>TOP SCORE</p>
 					<ul>
 						<li>GEORGE <span>856345 PTS<span></li>
 						<li>GEORGE <span>856345 PTS<span></li>
@@ -71,7 +71,7 @@
 						<li>GEORGE <span>856345 PTS<span></li>
 						<li>GEORGE <span>856345 PTS<span></li>
 					</ul>
-					<a href="#" class="bouton">LANCER LA MISSION</a>
+					<a href="#" class="bouton" onclick="display(4); return false;">MENU PRINCIPAL</a>
 				</section>
 				<section id="touches" class="ecran">
 					<div>
@@ -79,7 +79,12 @@
 						<p>SE DÉPLACER</p>
 						<p>CAPTURER UN MOUTON</p>
 					</div>
-					<a href="#" class="bouton">MENU</a>
+					<a href="#" id="#retour_menu" class="bouton" onclick="display(5); return false;">MENU PRINCIPAL</a>
+				</section>
+				<section id="gameOver" class="ecran">
+					<p id="titreEcran">GAME OVER</p>
+					<p id="textEcran">LES PLUTONIENS MEURENT DE FROID.</p>
+					<a href="#" class="bouton" id="boutonEcran" onclick="display(6); return false;">RELANCEZ L'EXPEDITION</a>
 				</section>
 				<div class="moutons"></div>
 			</section>
