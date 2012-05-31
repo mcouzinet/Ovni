@@ -64,7 +64,6 @@ function Decompte(){
 	Time_ReLance = setTimeout("Decompte()", 1000); 
 }
 
-
 function newGame(){
 	numSheep = 5;
 	addSheep(numSheep);
