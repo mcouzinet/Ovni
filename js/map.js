@@ -116,6 +116,7 @@ document.onkeypress = function(e) {
 	}
 	camera.setAltitude(altitudeSoucoupe);
 	ge.getView().setAbstractView(camera);
+	return false;
 }
 
 document.onkeyup = function(e){
@@ -135,6 +136,7 @@ document.onkeyup = function(e){
 		 break;
 	}
 	keyDown = false;
+	return false;
 }
 
 
@@ -157,6 +159,7 @@ document.onkeydown = function(e){
 	}
 	keyDown = true;
 	enterFrame();
+	return false;
 }
 
 var enterFrame = function (){
