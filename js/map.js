@@ -203,8 +203,8 @@ var enterFrame = function (){
 			console.log("depCamLat : "+depCamLat);
 			console.log("depCamLong : "+depCamLon);
 			$("#point_radar").css({
-				top:(depCamLat)+"px",
-				left:(depCamLon)+"px"
+				top:((31*(centerMapLat+mapSize/2-camera.getLatitude()))/mapSize+15)+"px",
+				left:(31-(31*(centerMapLon+mapSize/2-camera.getLongitude()))/mapSize+15)+"px"
 			});
 		}
 		if(depCamLon < (centerMapLon + mapSize) && depCamLon > (centerMapLon - mapSize) ){
