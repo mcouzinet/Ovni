@@ -18,6 +18,8 @@ var iconMarker,
 	numSheep = 5
 	vitesseDeplacement = 0.00000008,
 	duree = 180;
+	secondes = 180;
+	statut=true;
  
 // Constante
 const centerMapLat = 45.4943800000006,
@@ -48,20 +50,20 @@ function page_init(){
 	// timeMsg(duree);
 	Decompte();
 }
-
+	
 function Decompte(){
-	var CompteARebours = document.getElementById("temps");
-	var temps_actuel = new Date()/1000;
-	console.log(temps_actuel);
-	var temps_final = temps_actuel;
-	console.log(temps_final);
-	var secondes = (temps_final - temps_actuel);
-	console.log("secondes restantes"+secondes);
-	document.getElementById("temps").innerHTML = secondes;
-	if (secondes<178){
-		console.log("coucou");
+	if (secondes>0){
+		var CompteARebours = document.getElementById("temps");
+		var temps_actuel = new Date()/1000;
+		if (statut==true){
+			temps_init=temps_actuel;
+			statut=false;
+		}
+		var temps_final = temps_init+duree;
+		secondes = Math.floor(temps_final - temps_actuel);
+		document.getElementById("temps").innerHTML = secondes;
+		Time_ReLance = setTimeout("Decompte()", 1000);
 	}
-	Time_ReLance = setTimeout("Decompte()", 1000); 
 }
 
 function newGame(){
