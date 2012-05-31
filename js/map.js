@@ -7,6 +7,7 @@ var iconMarker,
 	keyDown,
 	placemark,
 	ge,
+	camera,
 	interfaceReady = false,
 	mapSize = 0.008,
 	tabMou = new Array,
@@ -38,7 +39,6 @@ function timer(){
 
 function isReady() {
 	interfaceReady = true;
-	console.log('READY');
 	return interfaceReady;
 }
 
@@ -49,15 +49,9 @@ function page_init(){
 	timeMsg(duree);
 }
 
-function start(){
-	newGame();
-}
-
 var newGame = function(){
-	addSheep(numSheep);
-	lookAt = ge.getView().copyAsLookAt(ge.ALTITUDE_RELATIVE_TO_GROUND);
-	camera = ge.getView().copyAsCamera(ge.ALTITUDE_RELATIVE_TO_GROUND);
 	numSheep = 5;
+	addSheep(numSheep);
 	if(interfaceReady){
 	 	sendToActionScript('{"action":"init","numSheep":"'+numSheep+'"}');
 	}
@@ -89,7 +83,7 @@ function sendToJavaScript(value) {
 
 function initCB(instance) {
    	ge = instance;
-  	ge.getWindow().setVisibility(true);
+  	ge.getWindow().setVisibility(false);
 	var options = ge.getOptions();   
 	options.setStatusBarVisibility(false);  
 	options.setGridVisibility(false);  
@@ -97,17 +91,18 @@ function initCB(instance) {
 	options.setScaleLegendVisibility(false);  
 	options.setAtmosphereVisibility(false);  
 	options.setMouseNavigationEnabled(false);
-
+	ge.getOptions().setFlyToSpeed(ge.SPEED_TELEPORT);
+	
 	var la = ge.createLookAt('');
-	la.set(45.4943800000006, 2.42566000000163, 0, ge.ALTITUDE_RELATIVE_TO_GROUND, 0, 0, 500);
+	la.set(centerMapLat, centerMapLon, 0, ge.ALTITUDE_RELATIVE_TO_GROUND, 0, 0, 500);
 	ge.getView().setAbstractView(la);
 	
 	iconMarker = ge.createIcon('');
 	iconMarker.setHref('http://img4.hostingpics.net/pics/926546mouton.png');
 	styleMarker = ge.createStyle(''); //create a new style
 	styleMarker.getIconStyle().setIcon(iconMarker); //apply the icon to the style
-	ge.getOptions().setFlyToSpeed(ge.SPEED_TELEPORT);
-	start();
+	
+	camera = ge.getView().copyAsCamera(ge.ALTITUDE_RELATIVE_TO_GROUND);
 }
 
 function failureCallback(errorCode){
@@ -126,12 +121,10 @@ var Mouton = function() {
 }
 
 Mouton.prototype.calculDistance = function() {
-	lookAt = ge.getView().copyAsLookAt(ge.ALTITUDE_RELATIVE_TO_GROUND);
-	camera = ge.getView().copyAsCamera(ge.ALTITUDE_RELATIVE_TO_GROUND);
 	distX = camera.getLatitude() - this.point.getLatitude();
 	distY = camera.getLongitude() - this.point.getLongitude();
 	distance = Math.sqrt(Math.pow(distX,2)+Math.pow(distY,2));
-	if(this.point.getLatitude()<camera.getLatitude() || this.point.getLongitude()>camera.getLongitude()){
+	if(this.point.getLatitude() < camera.getLatitude() || this.point.getLongitude() > camera.getLongitude()){
 		distance = -distance;
 	}
 	return distance;
@@ -292,6 +285,7 @@ function display(div){
 		break;
 		case 3:
 			document.getElementById("intro").style.display="none";
+			newGame();
 		break;
 		case 4:
 			document.getElementById("home").style.display="block";
