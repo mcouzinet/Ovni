@@ -34,16 +34,106 @@ table{border-collapse: collapse;border-spacing: 0;}
 
 }
 
-html, body {width:100%;height:100%;margin:0;}
-#corps{width:100%;background:url('../img/pelouse.png') repeat;}
-.contener{width:960px;margin:0 auto;padding:20px 0;position:relative;}
-.herbe{width:100%;height:22px;background:url('../img/herbe.png') repeat-x;position:absolute;bottom:0px;}
-.moutons{width:271px;height:70px;background:url('../img/moutons.png') repeat-x;position:absolute;top:-60px;left:200px;}
+html, body {
+	width:100%;
+	height:100%;
+	margin:0;
+}
 
-#header{width:100%;height:145px;background:#b8d6eb;text-align:center;overflow:hidden;position:relative;}
-#header #paysage{width:960px;height:150px;background:url('../img/paysage.png') no-repeat;margin:10px auto;}
-#header h1 a{display:block;width:374px;height:114px;padding-top:28px;background:url('../img/panneau.png') no-repeat;color:#fff;font-family:Grilled;font-size:30px;margin:0px auto;}
-#game{width:960px;height:600px;background:green;border:5px solid white}
+#corps{
+	width:100%;
+	background:url('../img/pelouse.png') repeat;
+}
+
+.contener{
+	width:960px;
+	margin:0 auto;
+	padding:20px 0;
+	position:relative;
+}
+.herbe{
+	width:100%;
+	height:22px;
+	background:url('../img/herbe.png') repeat-x;
+	position:absolute;
+	bottom:0px;
+}
+
+.moutons{
+	width:271px;
+	height:70px;
+	background:url('../img/moutons.png') repeat-x;
+	position:absolute;
+	top:-90px;
+	left:200px;
+}
+
+#header{
+	width:100%;
+	height:145px;
+	background:#b8d6eb;
+	text-align:center;
+	overflow:hidden;
+	position:relative;
+}
+
+#header #paysage{
+	width:960px;
+	height:150px;
+	background:url('../img/paysage.png') no-repeat;
+	margin:10px auto;
+}
+
+#header h1 a{
+	display:block;
+	width:374px;
+	height:114px;
+	padding-top:28px;
+	background:url('../img/panneau.png') no-repeat;
+	color:#fff;
+	font-family:Grilled;
+	font-size:30px;
+	margin:0px auto;
+}
+
+#game{
+	width:960px;
+	height:600px;
+	background:green;
+	border:5px solid white;
+	position:relative;
+}
+
+.ecran{
+	width:760px;
+	height:400px;
+	padding:100px;
+	background:url('../img/background_ecran.jpg') no-repeat;
+	color:#66b345;
+	line-height:150%;
+	font-size:1.5em;
+	font-family:Synchro;
+	text-align:center;
+	position:absolute;
+	top:0px;
+	left:0px;
+	z-index:500;
+	display:none;
+}
+.ecran .bouton{
+	display:inline-block;
+	padding:3px 70px;
+	background:#66b345;
+	color:#1e1e1e;
+	font-size:1.5em;
+	font-family:Synchro;
+}
+.ecran .bouton:hover{
+	color:#66b345;
+	background:#000;
+	border:3px solid #66b345;
+	padding:0px 67px;
+}
 
 #content{
 	width:960px;
@@ -168,6 +258,15 @@ html, body {width:100%;height:100%;margin:0;}
 	position:absolute;
 	top:30px;
 	left:30px;
+}
+#bottom #bouton{
+	width:94px;
+	height:88px;
+	background: url('../img/dashboard/bouton.png');
+	z-index:100;
+	position:absolute;
+	top:110px;
+	left:200px;
 }
 #bottom #compteur_hauteur{
 	width:28px;
