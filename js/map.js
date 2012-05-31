@@ -193,13 +193,11 @@ document.onkeydown = function(e){
 		// Zoom
 		case 65 : // A
 			altitudeSoucoupe -= (altitudeSoucoupe > 100)?100:0;
-			//$("#jauge_hauteur").css({top: (-(altitudeSoucoupe-100)/7.5)+120+"px"},10);
 			document.getElementById("jauge_hauteur").style.top=(-(altitudeSoucoupe-100)/7.5)+120+"px";
 			sendToActionScript('{"action":"zoom","value":"'+altitudeSoucoupe+'"}');
 			break;
 		case 90 : // Z
  			altitudeSoucoupe += (altitudeSoucoupe < 1000)?100:0;
-			//$("#jauge_hauteur").css({top: (-(altitudeSoucoupe-100)/7.5)+120+"px"});
 			document.getElementById("jauge_hauteur").style.top=(-(altitudeSoucoupe-100)/7.5)+120+"px";
 			sendToActionScript('{"action":"zoom","value":"'+altitudeSoucoupe+'"}');
 			break;
