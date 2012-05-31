@@ -222,3 +222,29 @@ var enterFrame = function (){
 		if(keyDown){enterFrame();}
 	},20);
 }
+
+//Gestion de la fin de la partie et du highScore
+function finPartie(score)
+{
+	$('#map3d').html("Votre score = "+score+"<FORM NAME=\"formScore\"><INPUT TYPE=\"text\" NAME=\"input\" VALUE=\"Pseudo\"><BR><INPUT TYPE=\"button\" NAME=\"bouton\" VALUE=\"Soumettre\" onClick=\"highScore("+score+");\"></FORM>");
+}
+
+function highScore(scorePerso)
+{
+	var pseudo=$("input").val();
+	$.getJSON("php/score.php",
+				{pseudo:pseudo, score:scorePerso},
+				function(data) {
+					$('#map3d').html("");
+					$.each(data, function(i,score){
+						if(isset(score.pseudo))
+							$('#map3d').append((i+1)+" "+score.pseudo+" "+score.score+"</BR>");
+						else
+							$('#map3d').append("</BR>ma position est : "+score.position+" avec un score de "+scorePerso);
+					});
+				  });
+}
+
+function isset(variable) {
+   return (typeof variable != 'undefined');
+}
