@@ -14,7 +14,7 @@ var iconMarker,
 	bougeY =0,
 	zoom = 0,
 	numSheep = 5
-	vitesseDeplacement = 0.00000002;
+	vitesseDeplacement = 0.00000008;
  
 // Constante
 const centerMapLat = 45.4943800000006,
@@ -212,5 +212,5 @@ var enterFrame = function (){
 		}
 		ge.getView().setAbstractView(camera);
 		if(keyDown){enterFrame();}
-	},300);
+	},20);
 }
