@@ -40,34 +40,6 @@ html, body {
 	margin:0;
 }
 
-#corps{
-	width:100%;
-	background:url('../img/pelouse.png') repeat;
-}
-
-.contener{
-	width:960px;
-	margin:0 auto;
-	padding:20px 0;
-	position:relative;
-}
-.herbe{
-	width:100%;
-	height:22px;
-	background:url('../img/herbe.png') repeat-x;
-	position:absolute;
-	bottom:0px;
-}
-
-.moutons{
-	width:271px;
-	height:70px;
-	background:url('../img/moutons.png') repeat-x;
-	position:absolute;
-	top:-90px;
-	left:200px;
-}
-
 #header{
 	width:100%;
 	height:145px;
@@ -94,6 +66,34 @@ html, body {
 	font-family:Grilled;
 	font-size:30px;
 	margin:0px auto;
+}
+
+#corps{
+	width:100%;
+	background:url('../img/pelouse.png') repeat;
+}
+
+.contener{
+	width:960px;
+	margin:0 auto;
+	padding:20px 0;
+	position:relative;
+}
+.herbe{
+	width:100%;
+	height:22px;
+	background:url('../img/herbe.png') repeat-x;
+	position:absolute;
+	bottom:0px;
+}
+
+.moutons{
+	width:271px;
+	height:70px;
+	background:url('../img/moutons.png') repeat-x;
+	position:absolute;
+	top:-90px;
+	left:200px;
 }
 
 #game{
@@ -133,6 +133,54 @@ html, body {
 	background:#000;
 	border:3px solid #66b345;
 	padding:0px 67px;
+}
+#home ul li{
+	margin-bottom:90px;
+}
+#home ul{
+	margin-top:40px;
+}
+
+#intro .bouton{
+	position:absolute;
+	bottom:100px;
+	left:230px;
+}
+
+#scores ul{
+	width:300px;
+	text-align:left;
+	margin:30px auto 0 auto;
+}
+
+#scores li{
+	display:inline-block;
+	width:300px;
+	position:relative;
+}
+
+#scores span{
+	position:absolute;
+	right:0px;
+}
+
+#scores .bouton{
+	position:absolute;
+	bottom:100px;
+	left:230px;
+}
+
+#touches div{
+	width:350px;
+	padding-left:400px;
+	height:376px;
+	background:url('../img/touches.png') no-repeat;
+	margin-left:50px;
+	text-align:left;
+}
+
+#touches p{
+	margin-bottom:85px;
 }
 
 #content{
