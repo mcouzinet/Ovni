@@ -27,6 +27,17 @@ $(function(){
 	}
 });
 
+function start(){
+	newGame();
+}
+
+var newGame = function(){
+	addSheep(numSheep);
+	lookAt = ge.getView().copyAsLookAt(ge.ALTITUDE_RELATIVE_TO_GROUND);
+	camera = ge.getView().copyAsCamera(ge.ALTITUDE_RELATIVE_TO_GROUND);
+	camera.setAltitude(500);
+}
+
 function thisMovie(movieName){
 	if(navigator.appName.indexOf("Microsoft") != -1){
 		return window[movieName];
@@ -61,7 +72,7 @@ function initCB(instance) {
 	options.setMouseNavigationEnabled(false);
 
 	var la = ge.createLookAt('');
-	la.set(45.4943800000006, 2.42566000000163, 0, ge.ALTITUDE_RELATIVE_TO_GROUND, 0, 0, 100);
+	la.set(45.4943800000006, 2.42566000000163, 0, ge.ALTITUDE_RELATIVE_TO_GROUND, 0, 0, 500);
 	ge.getView().setAbstractView(la);
 	
 	iconMarker = ge.createIcon('');
@@ -69,7 +80,7 @@ function initCB(instance) {
 	styleMarker = ge.createStyle(''); //create a new style
 	styleMarker.getIconStyle().setIcon(iconMarker); //apply the icon to the style
 	ge.getOptions().setFlyToSpeed(ge.SPEED_TELEPORT);
-	addSheep(numSheep);
+	start();
 }
 
 function failureCallback(errorCode){
