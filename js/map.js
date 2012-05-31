@@ -21,11 +21,17 @@ const centerMapLat = 45.4943800000006,
 	  centerMapLon = 2.42566000000163,
 	  distGetSheep = 0.0008;
 	  
-$(function(){
+// $(function(){
+// 	if(google){
+// 		google.earth.createInstance('map3d', initCB, failureCallback);
+// 	}
+// });
+
+function page_init(){
 	if(google){
 		google.earth.createInstance('map3d', initCB, failureCallback);
 	}
-});
+}
 
 function start(){
 	newGame();
@@ -173,12 +179,14 @@ document.onkeydown = function(e){
 		 break;
 		case 65: /*A - Zoom +*/
 			altitudeSoucoupe -= (altitudeSoucoupe > 100)?100:0;
-			$("#jauge_hauteur").css({top: (-(altitudeSoucoupe-100)/7.5)+120+"px"},10);
+			//$("#jauge_hauteur").css({top: (-(altitudeSoucoupe-100)/7.5)+120+"px"},10);
+			document.getElementById("jauge_hauteur").style.top=(-(altitudeSoucoupe-100)/7.5)+120+"px";
 			sendToActionScript('{"action":"zoom","value":"'+altitudeSoucoupe+'"}');
 		 break;
 		 case 90: /*Z - Zoom -*/
  			altitudeSoucoupe += (altitudeSoucoupe < 1000)?100:0;
-			$("#jauge_hauteur").css({top: (-(altitudeSoucoupe-100)/7.5)+120+"px"},10);
+			//$("#jauge_hauteur").css({top: (-(altitudeSoucoupe-100)/7.5)+120+"px"});
+			document.getElementById("jauge_hauteur").style.top=(-(altitudeSoucoupe-100)/7.5)+120+"px";
 			sendToActionScript('{"action":"zoom","value":"'+altitudeSoucoupe+'"}');
 		 break;
 	}
@@ -198,14 +206,14 @@ var enterFrame = function (){
 		camera.setAltitude(altitudeSoucoupe);
 		depCamLat = camera.getLatitude() + bougeX;
 		depCamLon = camera.getLongitude() + bougeY;
+		// $("#point_radar").css({
+		// 			top:((31*(centerMapLat+mapSize/2-camera.getLatitude()))/mapSize+15)+"px",
+		// 			left:(31-(31*(centerMapLon+mapSize/2-camera.getLongitude()))/mapSize+15)+"px"
+		// 		});
+		document.getElementById("point_radar").style.top=((31*(centerMapLat+mapSize/2-camera.getLatitude()))/mapSize+15)+"px";
+		document.getElementById("point_radar").style.left=(31-(31*(centerMapLon+mapSize/2-camera.getLongitude()))/mapSize+15)+"px";
 		if(depCamLat < (centerMapLat + mapSize) && depCamLat > (centerMapLat - mapSize) ){
 			camera.setLatitude(depCamLat);
-			console.log("depCamLat : "+depCamLat);
-			console.log("depCamLong : "+depCamLon);
-			$("#point_radar").css({
-				top:((31*(centerMapLat+mapSize/2-camera.getLatitude()))/mapSize+15)+"px",
-				left:(31-(31*(centerMapLon+mapSize/2-camera.getLongitude()))/mapSize+15)+"px"
-			});
 		}
 		if(depCamLon < (centerMapLon + mapSize) && depCamLon > (centerMapLon - mapSize) ){
 			camera.setLongitude(depCamLon);
