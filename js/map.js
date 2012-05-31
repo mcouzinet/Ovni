@@ -46,20 +46,23 @@ function page_init(){
 		google.earth.createInstance('map3d', initCB, failureCallback);
 	}
 	// timeMsg(duree);
-	//time();
+	Decompte();
 }
 
 function Decompte(){
 	var CompteARebours = document.getElementById("temps");
 	var temps_actuel = new Date()/1000;
-	var temps_final = temps_actuel+duree;
 	console.log(temps_actuel);
+	var temps_final = temps_actuel;
+	console.log(temps_final);
 	var secondes = (temps_final - temps_actuel);
-	console.log(secondes);
+	console.log("secondes restantes"+secondes);
 	document.getElementById("temps").innerHTML = secondes;
+	if (secondes<178){
+		console.log("coucou");
+	}
+	Time_ReLance = setTimeout("Decompte()", 1000); 
 }
-
-setTimeout(Decompte(),1000);
 
 var newGame = function(){
 	numSheep = 5;
