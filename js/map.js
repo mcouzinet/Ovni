@@ -200,6 +200,12 @@ var enterFrame = function (){
 		depCamLon = camera.getLongitude() + bougeY;
 		if(depCamLat < (centerMapLat + mapSize) && depCamLat > (centerMapLat - mapSize) ){
 			camera.setLatitude(depCamLat);
+			console.log("depCamLat : "+depCamLat);
+			console.log("depCamLong : "+depCamLon);
+			$("#point_radar").css({
+				top:(depCamLat)+"px",
+				left:(depCamLon)+"px"
+			});
 		}
 		if(depCamLon < (centerMapLon + mapSize) && depCamLon > (centerMapLon - mapSize) ){
 			camera.setLongitude(depCamLon);
