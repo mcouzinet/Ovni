@@ -139,6 +139,7 @@ function sendToJavaScript(value) {
 		case 'gameOver' :
 			setTimeout(function() {
 				document.getElementById("gameOver").style.display="block";
+				document.getElementById("scoreFinal").innerHTML = "SCORE : "+score;
 			},1500);
 			break;
 		
