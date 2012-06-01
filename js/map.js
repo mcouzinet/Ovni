@@ -18,11 +18,10 @@ var iconMarker,
 	numSheep = 5,
 	score = 0,
 	vitesseDeplacement = 0.00000008,
-	duree = 180,
+	duree = 181,
 	secondes = 180,
 	statut=true,
-	charger = false,
-	nbMouton=0;
+	charger = false;
  
 // Constante
 const centerMapLat = 45.4943800000006,
@@ -100,6 +99,9 @@ function sendToJavaScript(value) {
 					ge.getFeatures().removeChild(tabMou[i].placemark); 
 				}
 			}
+			numSheep = numSheep - 1;
+			document.getElementById("mission").innerHTML = "CAPTURER "+numSheep+" MOUTON(S)";
+			document.getElementById("viseur").innerHTML = "EMMENER LE MOUTON DANS L'HYPERESPACE";
 			break;
 			
 		case 'gameOver' :
@@ -112,9 +114,12 @@ function sendToJavaScript(value) {
 			console.log('décharge');
 			charger = false;
 			score += 10;
-			nbMouton = nbMouton + 1;
-			document.getElementById("score").innerHTML = nbMouton+1;
+			document.getElementById("score").innerHTML = score;
+			document.getElementById("viseur").innerHTML = "";
 			document.getElementById("bouton").style.backgroundPosition="0px -88px";
+			if (numSheep==0){
+				//document.getElementById("").style.display="block";
+			}
 			break;
 	}
 }
@@ -326,6 +331,7 @@ function display(div){
 		case 6:
 			statut = true;
 			document.getElementById("gameOver").style.display="none";
+			secondes=180;
 			Decompte();
 		break;
 	}
