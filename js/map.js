@@ -174,8 +174,8 @@ Mouton.prototype.calculDistance = function() {
 	return distance;
 }
 
-function addSheep(nomSheep){
-	for(i=0;i<nomSheep;i++){
+function addSheep(numSheep){
+	for(i=0;i<numSheep;i++){
 		tabMou[i] = new Mouton(i);
 	}
 }
