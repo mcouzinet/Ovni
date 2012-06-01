@@ -68,13 +68,14 @@ function Decompte(){
 		Time_ReLance = setTimeout("Decompte()", 1000);
 	}
 	else{
-		//document.getElementById("gameOver").style.display="block";
+		document.getElementById("gameOver").style.display="block";
 	}
 }
 
 function initLevel(leLevel){
 	theLevel = leLevel;
 	numSheep = nbSheep = level[leLevel].numSheep;
+	duree = level[leLevel].time;
 	tabMou = [];
 	for(i=0;i<numSheep;i++){
 		tabMou[i] = new Mouton(i);
@@ -366,7 +367,7 @@ function display(div){
 		case 7:
 			statut = true;
 			document.getElementById("YouWin").style.display="none";
-			initLevel(theLevel);
+			initLevel(theLevel+1);
 			Decompte();
 		break;
 	}
