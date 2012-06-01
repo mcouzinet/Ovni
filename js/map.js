@@ -21,7 +21,8 @@ var iconMarker,
 	duree = 181,
 	secondes = 180,
 	statut=true,
-	charger = false;
+	charger = false,
+	nbSheep = numSheep;
  
 // Constante
 const centerMapLat = 45.4943800000006,
@@ -59,6 +60,7 @@ function Decompte(){
 
 function newGame(){
 	numSheep = 5;
+	nbSheep = numSheep;
 	addSheep(numSheep);
 	if(interfaceReady){
 	 	sendToActionScript('{"action":"init","numSheep":"'+numSheep+'"}');
@@ -99,8 +101,8 @@ function sendToJavaScript(value) {
 					ge.getFeatures().removeChild(tabMou[i].placemark); 
 				}
 			}
-			numSheep = numSheep - 1;
-			document.getElementById("mission").innerHTML = "CAPTURER "+numSheep+" MOUTON(S)";
+			nbSheep = nbSheep - 1;
+			document.getElementById("mission").innerHTML = "CAPTURER "+nbSheep+" MOUTON(S)";
 			document.getElementById("viseur").innerHTML = "EMMENER LE MOUTON DANS L'HYPERESPACE";
 			break;
 			
