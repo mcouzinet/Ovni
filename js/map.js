@@ -80,6 +80,10 @@ function initLevel(leLevel){
 	if(interfaceReady){
 	 	sendToActionScript('{"action":"init","numSheep":"'+numSheep+'","level":"'+ leLevel+'"}');
 	}
+	document.getElementById("mission").innerHTML = "CAPTURER "+nbSheep+" MOUTON(S)";
+	document.getElementById("score").innerHTML = score;
+	document.getElementById("viseur").innerHTML = "";
+	document.getElementById("bouton").style.backgroundPosition="0px -88px";
 	camera.setAltitude(500);
 	camera.setLatitude(centerMapLat);
 	camera.setLongitude(centerMapLon);
@@ -88,6 +92,7 @@ function initLevel(leLevel){
 
 function newGame(leLevel){
 	initLevel(1);
+	score = 0;
 }
 
 function thisMovie(movieName){
@@ -124,7 +129,7 @@ function sendToJavaScript(value) {
 				}
 			}
 			nbSheep = nbSheep - 1;
-			document.getElementById("mission").innerHTML = "CAPTURER "+nbSheep+" MOUTON(S)";
+			
 			document.getElementById("viseur").innerHTML = "EMMENER LE MOUTON DANS L'HYPERESPACE";
 			break;
 			
@@ -138,6 +143,7 @@ function sendToJavaScript(value) {
 			console.log('décharge');
 			charger = false;
 			score += 10;
+			document.getElementById("mission").innerHTML = "CAPTURER "+nbSheep+" MOUTON(S)";
 			document.getElementById("score").innerHTML = score;
 			document.getElementById("viseur").innerHTML = "";
 			document.getElementById("bouton").style.backgroundPosition="0px -88px";
