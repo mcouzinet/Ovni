@@ -22,7 +22,8 @@ var iconMarker,
 	secondes = 180,
 	statut=true,
 	charger = false,
-	nbSheep = numSheep;
+	nbSheep = numSheep,
+	theLevel;
  
 // Constante
 const centerMapLat = 45.4943800000006,
@@ -30,16 +31,16 @@ const centerMapLat = 45.4943800000006,
 	  distGetSheep = 0.0008;
 	
 var level = new Array(
-	{'rocket':600,'numSheep':5,'time':120},
-	{'rocket':500,'numSheep':5,'time':120},
-	{'rocket':500,'numSheep':8,'time':120},
-	{'rocket':400,'numSheep':5,'time':120},
-	{'rocket':300,'numSheep':5,'time':120},
-	{'rocket':300,'numSheep':8,'time':120},
-	{'rocket':200,'numSheep':5,'time':120},
-	{'rocket':100,'numSheep':5,'time':120},
-	{'rocket':80,'numSheep':8,'time':120},
-	{'rocket':50,'numSheep':10,'time':60}
+	{'rocket':600,'numSheep':3, 'time':120},
+	{'rocket':500,'numSheep':5, 'time':120},
+	{'rocket':500,'numSheep':8, 'time':120},
+	{'rocket':400,'numSheep':5, 'time':120},
+	{'rocket':300,'numSheep':5, 'time':120},
+	{'rocket':300,'numSheep':8, 'time':120},
+	{'rocket':200,'numSheep':5, 'time':120},
+	{'rocket':100,'numSheep':5, 'time':120},
+	{'rocket':80, 'numSheep':8, 'time':120},
+	{'rocket':50, 'numSheep':10,'time':100}
 );
 
 function isReady() {
@@ -72,13 +73,14 @@ function Decompte(){
 }
 
 function initLevel(leLevel){
+	theLevel = leLevel;
 	numSheep = nbSheep = level[leLevel].numSheep;
 	tabMou = [];
 	for(i=0;i<numSheep;i++){
 		tabMou[i] = new Mouton(i);
 	}
 	if(interfaceReady){
-	 	sendToActionScript('{"action":"init","numSheep":"'+numSheep+'","level":"'+ leLevel+'"}');
+	 	sendToActionScript('{"action":"init","numSheep":"'+numSheep+'","level":"'+ leLevel+'","rocket":"'+level[leLevel].rocket+'"}');
 	}
 	document.getElementById("mission").innerHTML = "CAPTURER "+nbSheep+" MOUTON(S)";
 	document.getElementById("score").innerHTML = score;
@@ -91,7 +93,7 @@ function initLevel(leLevel){
 
 
 function newGame(leLevel){
-	initLevel(1);
+	initLevel(0);
 	score = 0;
 }
 
@@ -364,7 +366,7 @@ function display(div){
 		case 7:
 			statut = true;
 			document.getElementById("YouWin").style.display="none";
-			secondes=180;
+			initLevel(theLevel);
 			Decompte();
 		break;
 	}
