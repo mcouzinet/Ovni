@@ -333,11 +333,8 @@ html, body {
 	z-index:100;
 	position:absolute;
 	top:110px;
-	left:200px;
+	left:194px;
 }
-/*#bottom #bouton:hover{
-	background-position:0 0;
-}*/
 #bottom #compteur_hauteur{
 	width:28px;
 	height:159px;
