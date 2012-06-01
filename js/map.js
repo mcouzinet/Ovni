@@ -147,8 +147,9 @@ function sendToJavaScript(value) {
 			document.getElementById("score").innerHTML = score;
 			document.getElementById("viseur").innerHTML = "";
 			document.getElementById("bouton").style.backgroundPosition="0px -88px";
-			if (numSheep==0){
-				//document.getElementById("").style.display="block";
+			if (nbSheep==0){
+				document.getElementById("YouWin").style.display="block";
+				document.getElementById("scoreFinal").innerHTML = "SCORE : "+score;
 			}
 			break;
 	}
@@ -355,6 +356,12 @@ function display(div){
 		case 6:
 			statut = true;
 			document.getElementById("gameOver").style.display="none";
+			secondes=180;
+			Decompte();
+		break;
+		case 7:
+			statut = true;
+			document.getElementById("YouWin").style.display="none";
 			secondes=180;
 			Decompte();
 		break;
