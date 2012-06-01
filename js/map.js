@@ -81,6 +81,7 @@ function initLevel(leLevel){
 	numSheep = nbSheep = level[leLevel].numSheep;
 	duree = level[leLevel].time;
 	tabMou = [];
+	altitudeSoucoupe = 500;
 	for(i=0;i<numSheep;i++){
 		tabMou[i] = new Mouton(i);
 	}
