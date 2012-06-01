@@ -169,9 +169,7 @@ html, body {
 }
 
 #scores .bouton{
-	position:absolute;
-	bottom:100px;
-	left:230px;
+	margin:50px auto;
 }
 
 #touches div{

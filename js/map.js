@@ -67,7 +67,7 @@ function Decompte(){
 		Time_ReLance = setTimeout("Decompte()", 1000);
 	}
 	else{
-		document.getElementById("gameOver").style.display="block";
+		//document.getElementById("gameOver").style.display="block";
 	}
 }
 
@@ -135,7 +135,7 @@ function sendToJavaScript(value) {
 			
 		case 'gameOver' :
 			setTimeout(function() {
-				//document.getElementById("gameOver").style.display="block";
+				document.getElementById("gameOver").style.display="block";
 			},1500);
 			break;
 		
