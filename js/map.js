@@ -161,7 +161,6 @@ document.onkeypress = function(e) {
    	switch (e.keyCode) {
 		 case 97: /*A - Zoom +*/
 			altitudeSoucoupe -= (altitudeSoucoupe > 100)?100:0;
-			console.log('dqsdqs');
 			$("#jauge_hauteur").animate({top: (-(altitudeSoucoupe-100)/7.5)+120+"px"},10);
 			sendToActionScript('{"action":"zoom","value":"'+altitudeSoucoupe+'"}');
 		 break;
