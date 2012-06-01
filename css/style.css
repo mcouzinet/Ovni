@@ -188,18 +188,17 @@ html, body {
 }
 
 .titreEcran{
-position:relative;
-top:0px;
+	position:relative;
+	top:0px;
 }
 
 .textEcran{
-position:relative;
-top:130px;
+	position:relative;
+	top:130px;
 }
 
 .boutonEcran{
-position:relative;
-top:300px;
+	margin-top:250px;
 }
 
 #content{
