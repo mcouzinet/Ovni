@@ -15,7 +15,8 @@ var iconMarker,
 	bougeX =0,
 	bougeY =0,
 	zoom = 0,
-	numSheep = 5
+	numSheep = 5,
+	score = 0,
 	vitesseDeplacement = 0.00000008,
 	duree = 180,
 	secondes = 180,
@@ -85,21 +86,36 @@ function sendToActionScript(value){
 
 // Reception des valeurs par javascript
 function sendToJavaScript(value) {
-	console.log('sendToJavaScript : ' + value);
+	
+	console.log('hey : '+value);
 	data = json_parse(value,function(key,value){return value;});
-	if (data.action == 'choppe'){
-		charger = true;
-		document.getElementById("bouton").style.backgroundPosition="0px 0px";
-		document.getElementById("score").innerHTML = nbMouton+1;
-		for(i=0;i<numSheep;i++){
-			if (tabMou[i].numero == data.numero){
-				ge.getFeatures().removeChild(tabMou[i].placemark); 
+	
+	switch(data.action){
+		
+		case 'choppe' :
+			charger = true;
+			document.getElementById("bouton").style.backgroundPosition="0px 0px";
+			for(i=0;i<numSheep;i++){
+				if (tabMou[i].numero == data.numero){
+					ge.getFeatures().removeChild(tabMou[i].placemark); 
+				}
 			}
-		}
-		nbMouton = nbMouton + 1;
-	}
-	if (data.action == 'gameOver'){
-		//document.getElementById("gameOver").style.display="block";
+			break;
+			
+		case 'gameOver' :
+			setTimeout(function() {
+				//document.getElementById("gameOver").style.display="block";
+			},1500);
+			break;
+		
+		case 'decharger' :
+			console.log('décharge');
+			charger = false;
+			score += 10;
+			nbMouton = nbMouton + 1;
+			document.getElementById("score").innerHTML = nbMouton+1;
+			document.getElementById("bouton").style.backgroundPosition="0px -88px";
+			break;
 	}
 }
 
@@ -211,12 +227,12 @@ document.onkeydown = function(e){
 		case 65 : // A
 			altitudeSoucoupe -= (altitudeSoucoupe > 100)?100:0;
 			document.getElementById("jauge_hauteur").style.top=(-(altitudeSoucoupe-100)/7.5)+120+"px";
-			sendToActionScript('{"action":"zoom","value":"'+altitudeSoucoupe+'"}');
+			sendToActionScript('{"action":"zoom","value":"'+altitudeSoucoupe+'","charger":"'+charger+'"}');
 			break;
 		case 90 : // Z
  			altitudeSoucoupe += (altitudeSoucoupe < 1000)?100:0;
 			document.getElementById("jauge_hauteur").style.top=(-(altitudeSoucoupe-100)/7.5)+120+"px";
-			sendToActionScript('{"action":"zoom","value":"'+altitudeSoucoupe+'"}');
+			sendToActionScript('{"action":"zoom","value":"'+altitudeSoucoupe+'","charger":"'+charger+'"}');
 			break;
 		// Attrapage
 		case 32 : // espace
