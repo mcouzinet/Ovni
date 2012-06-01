@@ -324,7 +324,7 @@ function display(div){
 			document.getElementById("touches").style.display="none";
 		break;
 		case 6:
-			statut=true;
+			statut = true;
 			document.getElementById("gameOver").style.display="none";
 			Decompte();
 		break;
