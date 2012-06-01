@@ -28,6 +28,19 @@ var iconMarker,
 const centerMapLat = 45.4943800000006,
 	  centerMapLon = 2.42566000000163,
 	  distGetSheep = 0.0008;
+	
+var level = new Array(
+	{'rocket':600,'numSheep':5,'time':120},
+	{'rocket':500,'numSheep':5,'time':120},
+	{'rocket':500,'numSheep':8,'time':120},
+	{'rocket':400,'numSheep':5,'time':120},
+	{'rocket':300,'numSheep':5,'time':120},
+	{'rocket':300,'numSheep':8,'time':120},
+	{'rocket':200,'numSheep':5,'time':120},
+	{'rocket':100,'numSheep':5,'time':120},
+	{'rocket':80,'numSheep':8,'time':120},
+	{'rocket':50,'numSheep':10,'time':60}
+);
 
 function isReady() {
 	interfaceReady = true;
@@ -58,14 +71,23 @@ function Decompte(){
 	}
 }
 
-function newGame(){
-	numSheep = 5;
-	nbSheep = numSheep;
-	addSheep(numSheep);
+function initLevel(leLevel){
+	numSheep = nbSheep = level[leLevel].numSheep;
+	tabMou = [];
+	for(i=0;i<numSheep;i++){
+		tabMou[i] = new Mouton(i);
+	}
 	if(interfaceReady){
-	 	sendToActionScript('{"action":"init","numSheep":"'+numSheep+'"}');
+	 	sendToActionScript('{"action":"init","numSheep":"'+numSheep+'","level":"'+ leLevel+'"}');
 	}
 	camera.setAltitude(500);
+	camera.setLatitude(centerMapLat);
+	camera.setLongitude(centerMapLon);
+}
+
+
+function newGame(leLevel){
+	initLevel(1);
 }
 
 function thisMovie(movieName){
@@ -174,12 +196,6 @@ Mouton.prototype.calculDistance = function() {
 		distance = -distance;
 	}
 	return distance;
-}
-
-function addSheep(numSheep){
-	for(i=0;i<numSheep;i++){
-		tabMou[i] = new Mouton(i);
-	}
 }
 
 document.onkeyup = function(e){
