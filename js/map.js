@@ -68,6 +68,10 @@ function Decompte(){
 		Time_ReLance = setTimeout("Decompte()", 1000);
 	}
 	else{
+		sendToActionScript('{"action":"gameover"}');
+		for(i=0;i<numSheep;i++){
+			ge.getFeatures().removeChild(tabMou[i].placemark); 
+		}
 		document.getElementById("gameOver").style.display="block";
 	}
 }
@@ -90,6 +94,7 @@ function initLevel(leLevel){
 	camera.setAltitude(500);
 	camera.setLatitude(centerMapLat);
 	camera.setLongitude(centerMapLon);
+	Decompte();
 }
 
 
@@ -137,6 +142,9 @@ function sendToJavaScript(value) {
 			break;
 			
 		case 'gameOver' :
+			for(i=0;i<numSheep;i++){
+				ge.getFeatures().removeChild(tabMou[i].placemark); 
+			}
 			setTimeout(function() {
 				document.getElementById("gameOver").style.display="block";
 				document.getElementById("scoreFinal").innerHTML = "SCORE : "+score;
@@ -155,6 +163,7 @@ function sendToJavaScript(value) {
 				clearTimeout(Time_ReLance);
 				document.getElementById("YouWin").style.display="block";
 				var scor = parseInt(score)+parseInt(secondes);
+				score = scor;
 				document.getElementById("scoreFinal").innerHTML = "SCORE : "+scor;
 			}
 			break;
@@ -337,40 +346,37 @@ function display(div){
 		case 0:
 			document.getElementById("intro").style.display="block";
 			document.getElementById("home").style.display="none";
-		break;
+			break;
 		case 1:
 			document.getElementById("touches").style.display="block";
 			document.getElementById("home").style.display="none";
-		break;
+			break;
 		case 2:
 			document.getElementById("scores").style.display="block";
 			document.getElementById("home").style.display="none";
-		break;
+			break;
 		case 3:
 			document.getElementById("intro").style.display="none";
 			newGame();
-			Decompte();
-		break;
+			break;
 		case 4:
 			document.getElementById("home").style.display="block";
 			document.getElementById("scores").style.display="none";
-		break;
+			break;
 		case 5:
 			document.getElementById("home").style.display="block";
 			document.getElementById("touches").style.display="none";
-		break;
+			break;
 		case 6:
 			statut = true;
 			document.getElementById("gameOver").style.display="none";
-			initLevel(0);
-			secondes=180;
-			Decompte();
-		break;
+			newGame();
+			break;
 		case 7:
 			statut = true;
 			document.getElementById("YouWin").style.display="none";
+			document.getElementById("gameOver").style.display="none";
 			initLevel(theLevel+1);
-			Decompte();
-		break;
+			break;
 	}
 }
