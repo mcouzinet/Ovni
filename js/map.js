@@ -17,9 +17,10 @@ var iconMarker,
 	zoom = 0,
 	numSheep = 5
 	vitesseDeplacement = 0.00000008,
-	duree = 180;
-	secondes = 180;
-	statut=true;
+	duree = 180,
+	secondes = 180,
+	statut=true,
+	charger = false;
  
 // Constante
 const centerMapLat = 45.4943800000006,
@@ -61,7 +62,6 @@ function newGame(){
 	if(interfaceReady){
 	 	sendToActionScript('{"action":"init","numSheep":"'+numSheep+'"}');
 	}
-	//sendToActionScript('{"action":"init","numSheep":"'+numSheep+'"}');
 	camera.setAltitude(500);
 }
 
@@ -86,10 +86,9 @@ function sendToActionScript(value){
 function sendToJavaScript(value) {
 	console.log('sendToJavaScript : ' + value);
 	data = json_parse(value,function(key,value){return value;});
-	console.log('data : ' + data.action);
 	if (data.action == 'choppe'){
+		charger = true;
 		document.getElementById("bouton").style.backgroundPosition="0px 0px";
-		console.log(data.numero);
 		for(i=0;i<numSheep;i++){
 			if (tabMou[i].numero == data.numero){
 				ge.getFeatures().removeChild(tabMou[i].placemark); 
@@ -162,15 +161,19 @@ document.onkeyup = function(e){
 	switch (e.keyCode) {
 		 case 38: // haut
 			bougeX = 0;
+			sendToActionScript('{"action":"bouge","value":"off"}');
 		 	break;
 		 case 40: // bas
 			bougeX = 0;
+			sendToActionScript('{"action":"bouge","value":"off"}');
 		 	break;
 		 case 37: // gauche
 			bougeY = 0;
+			sendToActionScript('{"action":"bouge","value":"off"}');
 		 	break;
 		 case 39: // droit
 			bougeY = 0;
+			sendToActionScript('{"action":"bouge","value":"off"}');
 		 	break;
 		case 32 : // espace
 			if(keyDown == true){
@@ -187,15 +190,19 @@ document.onkeydown = function(e){
 		// Déplcement
 		case 38 : // Haut
 			bougeX = vitesseDeplacement*altitudeSoucoupe;
+			sendToActionScript('{"action":"bouge","value":"on"}');
 			break;
 		case 40 : // bas
 			bougeX = -vitesseDeplacement*altitudeSoucoupe;
+			sendToActionScript('{"action":"bouge","value":"on"}');
 			break;
 		case 37 : // gauche
 			bougeY = -vitesseDeplacement*altitudeSoucoupe;
+			sendToActionScript('{"action":"bouge","value":"on"}');
 			break;
 		case 39 : // droit
 			bougeY = vitesseDeplacement*altitudeSoucoupe;
+			sendToActionScript('{"action":"bouge","value":"on"}');
 			break;
 		// Zoom
 		case 65 : // A
@@ -210,7 +217,7 @@ document.onkeydown = function(e){
 			break;
 		// Attrapage
 		case 32 : // espace
-			if(keyDown == false){
+			if(keyDown == false && !charger){
 				sendToActionScript('{"action":"get","value":"on"}');
 			}
 			break;		
