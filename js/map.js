@@ -92,10 +92,7 @@ function sendToJavaScript(value) {
 		console.log(data.numero);
 		for(i=0;i<numSheep;i++){
 			if (tabMou[i].numero == data.numero){
-				ge.getFeatures().removeChild(tabMou[i].placemark);
-				//delete Mouton(data.numero);
-				//ge.getFeatures().removeChild(features.item(i));
-				//ge.getFeatures().removeChild(Mouton[data.numero].gePlacemark); 
+				ge.getFeatures().removeChild(tabMou[i].placemark); 
 			}
 		}
 	}
