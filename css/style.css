@@ -249,6 +249,23 @@ html, body {
 	font-size:24px;
 	text-align:center;
 }
+
+#time{
+	position:absolute;
+	top:37px;
+	left:48px;
+	font-family:helvetica, arial;
+	font-size:12px;
+}
+
+#score_actuel{
+	position:absolute;
+	top:37px;
+	left:405px;
+	font-family:helvetica, arial;
+	font-size:12px;
+}
+
 #top #temps{
 	width:60px;
 	height:35px;
