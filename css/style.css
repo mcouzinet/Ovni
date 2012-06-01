@@ -38,6 +38,7 @@ html, body {
 	width:100%;
 	height:100%;
 	margin:0;
+	background:url('../img/pelouse.png') repeat;
 }
 
 #header{
@@ -186,17 +187,17 @@ html, body {
 	margin-bottom:85px;
 }
 
-#titreEcran{
+.titreEcran{
 position:relative;
 top:0px;
 }
 
-#textEcran{
+.textEcran{
 position:relative;
 top:130px;
 }
 
-#boutonEcran{
+.boutonEcran{
 position:relative;
 top:300px;
 }
@@ -206,8 +207,7 @@ top:300px;
 	height:600px;
 	position:relative;
 	margin:0px auto;
-	padding:20px 0;
-	box-shadow
+	padding-top:20px;
 }
 #map3d{
 	height:100%;
