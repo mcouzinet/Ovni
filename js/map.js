@@ -160,25 +160,6 @@ function addSheep(nomSheep){
 	}
 }
 
-document.onkeypress = function(e) {
-   	switch (e.keyCode) {
-		 case 97: /*A - Zoom +*/
-			altitudeSoucoupe -= (altitudeSoucoupe > 100)?100:0;
-			console.log('dqsdqs');
-			$("#jauge_hauteur").animate({top: (-(altitudeSoucoupe-100)/7.5)+120+"px"},10);
-			sendToActionScript('{"action":"zoom","value":"'+altitudeSoucoupe+'"}');
-		 break;
-		 case 122: /*Z - Zoom -*/
- 			altitudeSoucoupe += (altitudeSoucoupe < 1000)?100:0;
-			$("#jauge_hauteur").animate({top: (-(altitudeSoucoupe-100)/7.5)+120+"px"},10);
-			sendToActionScript('{"action":"zoom","value":"'+altitudeSoucoupe+'"}');
-		 break;
-	}
-	camera.setAltitude(altitudeSoucoupe);
-	ge.getView().setAbstractView(camera);
-	return false;
-}
-
 document.onkeyup = function(e){
 	// Envoie du numero de la touche à flash
 	switch (e.keyCode) {
