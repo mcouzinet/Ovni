@@ -20,6 +20,7 @@ var iconMarker,
 	duree = 180;
 	secondes = 180;
 	statut=true;
+	nbMouton=0;
  
 // Constante
 const centerMapLat = 45.4943800000006,
@@ -89,12 +90,14 @@ function sendToJavaScript(value) {
 	console.log('data : ' + data.action);
 	if (data.action == 'choppe'){
 		document.getElementById("bouton").style.backgroundPosition="0px 0px";
+		document.getElementById("score").innerHTML = nbMouton+1;
 		console.log(data.numero);
 		for(i=0;i<numSheep;i++){
 			if (tabMou[i].numero == data.numero){
 				ge.getFeatures().removeChild(tabMou[i].placemark); 
 			}
 		}
+		nbMouton = nbMouton + 1;
 	}
 	if (data.action == 'gameOver'){
 		//document.getElementById("gameOver").style.display="block";
@@ -298,8 +301,8 @@ function display(div){
 			document.getElementById("touches").style.display="none";
 		break;
 		case 6:
-			document.getElementById("gameOver").style.display="none";
 			statut=true;
+			document.getElementById("gameOver").style.display="none";
 			Decompte();
 		break;
 	}
