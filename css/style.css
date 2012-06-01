@@ -263,13 +263,13 @@ top:300px;
 	font-size:34px;
 }
 #top #mission{
-	width:257px;
+	width:280px;
 	height:26px;
 	z-index:100;
 	background: url('../img/dashboard/mission.png');
 	position:absolute;
 	top:20px;
-	left:115px;
+	left:100px;
 }
 #top #score{
 	width:60px;
@@ -289,6 +289,10 @@ top:300px;
 	position:absolute;
 	top:200px;
 	left:120px;
+	font-family: Synchro;
+	color:#42FF00;
+	font-size:24px;
+	text-align:center;
 }
 #bottom{
 	width:480px;
