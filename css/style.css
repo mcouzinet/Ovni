@@ -137,6 +137,7 @@ html, body {
 }
 #home{
 	display:block;
+	z-index:2;
 }
 #home ul li{
 	margin-bottom:90px;
@@ -220,6 +221,7 @@ html, body {
 	width:480px;
 	float:left;
 	margin-top:0px;
+	z-index:1;
 }
 
 #dashboard{
@@ -230,6 +232,7 @@ html, body {
 	position:relative;
 	top:0px;
 	left:480px;
+	z-index:2;
 }
 #separateur{
 	width:15px;
