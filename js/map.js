@@ -362,6 +362,7 @@ function display(div){
 		case 6:
 			statut = true;
 			document.getElementById("gameOver").style.display="none";
+			initLevel(theLevel);
 			secondes=180;
 			Decompte();
 		break;
