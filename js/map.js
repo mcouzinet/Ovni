@@ -148,8 +148,10 @@ function sendToJavaScript(value) {
 			document.getElementById("viseur").innerHTML = "";
 			document.getElementById("bouton").style.backgroundPosition="0px -88px";
 			if (nbSheep==0){
+				clearTimeout(Time_ReLance);
 				document.getElementById("YouWin").style.display="block";
-				document.getElementById("scoreFinal").innerHTML = "SCORE : "+score;
+				var scor = parseInt(score)+parseInt(secondes);
+				document.getElementById("scoreFinal").innerHTML = "SCORE : "+scor;
 			}
 			break;
 	}
